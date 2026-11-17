@@ -2,6 +2,8 @@
 
 Education and early-childhood budget rows of three cities (Naga, Zamboanga City, Cagayan de Oro) next to DepEd's school-level data and EDCOM 2's early-childhood figures, keyed by DepEd school ID and PSGC barangay code. Built 17 Nov 2026 as the prototype for Kim Williame Lee's BetterGov Fellowship 2026 application (Basic Education and Early Childhood challenges).
 
+Live: https://ph-education-spending.vercel.app (Vercel project `ph-education-spending`, scope kimileeees-projects, Git-connected: a push to `main` redeploys).
+
 Static site plus Python pipelines, same pattern as [ph-energy-data](https://github.com/kimileeee/ph-energy-data).
 
 ## Pages

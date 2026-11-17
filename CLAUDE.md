@@ -27,4 +27,4 @@ Always use absolute paths in Bash.
 - **Methodology and proposal pages are generated.** Edit `pipeline/templates/*.html`; every figure is a `{{placeholder}}` filled by `pipeline/site.py`.
 - **No third-party requests.** The map is plain SVG (no tiles). Prose: Kim's voice, run the humanizer skill, no em dashes.
 - **Privacy:** nothing about the author beyond the name "Kim Williame Lee".
-- Ask Kim before deploying or making the GitHub repo public. Commits use the GitHub no-reply email (repo-local git config).
+- Deployed: https://ph-education-spending.vercel.app, Git-connected (push to `main` redeploys). Ask Kim before changing the Vercel project or the repo's visibility. Commits use the GitHub no-reply email (repo-local git config).

@@ -37,5 +37,6 @@ Numbers as of 17 Nov 2026, from `data/stats.json`. Rerun the pipeline and they m
 
 ## One-liners for the form
 
-- Prototype sentence: *A working prototype puts Naga City's 2027 AIP and 2026 budget rows for education and early childhood next to DepEd's Project Bukas data and CRLA reading results for the 45 public schools in the Schools Division of Naga City, keyed by school ID and PSGC: [[link]] (code: https://github.com/kimileeee/ph-education-spending).*
+- Prototype sentence: *A working prototype puts Naga City's 2027 AIP and 2026 budget rows for education and early childhood next to DepEd's Project Bukas data and CRLA reading results for the 45 public schools in the Schools Division of Naga City, keyed by school ID and PSGC, and runs the same pipeline on Zamboanga City and Cagayan de Oro: https://ph-education-spending.vercel.app (code: https://github.com/kimileeee/ph-education-spending).*
+- Prototype link for the form's optional field: https://ph-education-spending.vercel.app
 - Why it matters: *In Naga's 2027 AIP, ₱130 million of ₱278.7 million for education and early childhood sits in one SEF row that names no school, and none of the 47 rows I tagged names a school or barangay. The outcomes are public school by school (low emerging readers range from 2.0% to 6.4% by district, and up to 11.4% in one school), so the missing link is the spending side.*
