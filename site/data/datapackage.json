@@ -1,0 +1,659 @@
+{
+ "profile": "tabular-data-package",
+ "name": "ph-education-spending-naga",
+ "title": "Naga City education and early-childhood spending next to school data (prototype)",
+ "licenses": [
+  {
+   "name": "ODC-BY-1.0",
+   "path": "https://opendatacommons.org/licenses/by/1-0/"
+  }
+ ],
+ "created": "2026-11-17T08:31:01+00:00",
+ "sources": [
+  {
+   "title": "Enrollment in SY 2025-2026 (school level)",
+   "path": "https://www.deped.gov.ph/wp-content/uploads/Enrollment-in-SY-2025-2026.zip"
+  },
+  {
+   "title": "Enrollment in SY 2023-2024 (school level)",
+   "path": "https://www.deped.gov.ph/wp-content/uploads/Enrollment-in-SY-2023-2024.zip"
+  },
+  {
+   "title": "Enrollment in SY 2017-2018 (school level)",
+   "path": "https://www.deped.gov.ph/wp-content/uploads/Enrollment-in-SY-2017-2018.zip"
+  },
+  {
+   "title": "School Personnel in SY 2023-2024, incl. locally funded staff by fund",
+   "path": "https://www.deped.gov.ph/wp-content/uploads/School-Personnel-in-SY-2023-2024.zip"
+  },
+  {
+   "title": "ICT Data in SY 2023-2024, incl. equipment by funding source",
+   "path": "https://www.deped.gov.ph/wp-content/uploads/ICT-Data-in-SY-2023-2024.zip"
+  },
+  {
+   "title": "School Facilities in SY 2023-2024",
+   "path": "https://www.deped.gov.ph/wp-content/uploads/School-Facilities-in-SY-2023-2024.zip"
+  },
+  {
+   "title": "Comprehensive Rapid Literacy Assessment (CRLA) 2025-2026, selected schools",
+   "path": "https://www.deped.gov.ph/wp-content/uploads/Comprehensive-Rapid-Literacy-Assessment-CRLA-2025-2026.zip"
+  },
+  {
+   "title": "ELLNA 2023-2024, selected schools",
+   "path": "https://www.deped.gov.ph/wp-content/uploads/Early-Language-Literacy-and-Numeracy-Assessment-ELLNA.zip"
+  },
+  {
+   "title": "NAT Grade 6 2023-2024, selected schools",
+   "path": "https://www.deped.gov.ph/wp-content/uploads/National-Achievement-Test-NAT-Grade-6-2023-2024.zip"
+  },
+  {
+   "title": "Annual Budget 2026 (Ord. No. 2025-131), public Browse page",
+   "path": "https://budget.naga.gov.ph/annual/2026/browse"
+  },
+  {
+   "title": "Annual Investment Program 2027, public Browse page",
+   "path": "https://budget.naga.gov.ph/aip/2027/browse"
+  },
+  {
+   "title": "Philippine Standard Geographic Code, 2026 (via bendlikeabamboo/barangay)",
+   "path": "https://raw.githubusercontent.com/bendlikeabamboo/barangay/v2026.10.12.0/barangay/data/barangay_flat.json"
+  },
+  {
+   "title": "Barangay boundaries, medium resolution (philippines-json-maps)",
+   "path": "https://github.com/faeldon/philippines-json-maps/releases/download/v1.1.1/geojson-medres.zip"
+  },
+  {
+   "title": "EDCOM 2 Early Childhood Dashboard",
+   "path": "https://edcom2.gov.ph/eccddashboard/"
+  },
+  {
+   "title": "Operation Timbang Plus (OPT+) results by barangay",
+   "path": "https://www.nnc.gov.ph/"
+  },
+  {
+   "title": "Community-Based Monitoring System",
+   "path": "https://psa.gov.ph/"
+  }
+ ],
+ "resources": [
+  {
+   "name": "budget_lines",
+   "path": "budget_lines.csv",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "description": "Naga City education, early-childhood, nutrition and child-welfare budget rows (AB 2026 enacted, AIP 2027), tagged by domain and fund",
+   "schema": {
+    "fields": [
+     {
+      "name": "line_id",
+      "type": "string",
+      "description": "The row's ID on budget.naga.gov.ph; its public page is source_url"
+     },
+     {
+      "name": "cycle",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "document",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "fiscal_year",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "aip_reference_code",
+      "type": "string",
+      "description": "The City's AIP reference code, as printed"
+     },
+     {
+      "name": "office_code",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "office_name",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "pap_class",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "domain",
+      "type": "string",
+      "description": "Tag from this project's rules (pipeline/build.py RULES); tag_rule names the rule"
+     },
+     {
+      "name": "tag_rule",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "fund_sources",
+      "type": "string",
+      "description": "Funds the City's portal lists for the row (e.g. SEF, GF); empty if the row's page wasn't read"
+     },
+     {
+      "name": "thematic_tags",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "ps",
+      "type": "number",
+      "description": "Personal services, PHP"
+     },
+     {
+      "name": "mooe",
+      "type": "number",
+      "description": "Maintenance and other operating expenses, PHP"
+     },
+     {
+      "name": "co",
+      "type": "number",
+      "description": "Capital outlay (plus financial expenses), PHP"
+     },
+     {
+      "name": "total",
+      "type": "number",
+      "description": "Row total as published, PHP"
+     },
+     {
+      "name": "finish_line",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "place_level",
+      "type": "string",
+      "description": "Finest place the source states: 'city' means no school or barangay is named"
+     },
+     {
+      "name": "place_code",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "school_ids",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "barangay_codes",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "source_id",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "source_url",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "retrieved",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "validation",
+      "type": "string",
+      "description": ""
+     }
+    ],
+    "primaryKey": "line_id"
+   }
+  },
+  {
+   "name": "schools",
+   "path": "schools.csv",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "description": "Every school in DepEd's Schools Division of Naga City, with enrollment, City-SEF-paid staff, LGU/SEF-funded ICT and facilities",
+   "schema": {
+    "fields": [
+     {
+      "name": "school_id",
+      "type": "string",
+      "description": "DepEd 6-digit school ID (string)"
+     },
+     {
+      "name": "school_name",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "sector",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "management",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "school_district",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "barangay_deped",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "psgc_barangay_code",
+      "type": "string",
+      "description": "PSA 10-digit PSGC barangay code (string); empty if unmatched"
+     },
+     {
+      "name": "psgc_barangay_name",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "offers_es",
+      "type": "boolean",
+      "description": ""
+     },
+     {
+      "name": "offers_jhs",
+      "type": "boolean",
+      "description": ""
+     },
+     {
+      "name": "offers_shs",
+      "type": "boolean",
+      "description": ""
+     },
+     {
+      "name": "learners_2025_26",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "kinder_2025_26",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "learners_2023_24",
+      "type": "number",
+      "description": ""
+     },
+     {
+      "name": "learners_2017_18",
+      "type": "number",
+      "description": ""
+     },
+     {
+      "name": "classrooms_instructional_2023_24",
+      "type": "number",
+      "description": ""
+     },
+     {
+      "name": "buildings_major_repair_or_worse_2023_24",
+      "type": "number",
+      "description": ""
+     },
+     {
+      "name": "makeshift_rooms_2023_24",
+      "type": "number",
+      "description": ""
+     },
+     {
+      "name": "staff_city_sef_2023_24",
+      "type": "number",
+      "description": "School staff (teachers and non-teaching) paid from the City SEF, per DepEd's personnel file"
+     },
+     {
+      "name": "teachers_city_sef_2023_24",
+      "type": "number",
+      "description": "Teachers paid from the City SEF, per DepEd's personnel file"
+     },
+     {
+      "name": "staff_other_lgu_2023_24",
+      "type": "number",
+      "description": "School staff paid from other LGU funds, per DepEd's personnel file"
+     },
+     {
+      "name": "ict_items_lgu_sef_2023_24",
+      "type": "number",
+      "description": "ICT equipment items DepEd lists as funded by the LGU or its SEF"
+     },
+     {
+      "name": "crla_2025_26",
+      "type": "string",
+      "description": "'published' if the school has a row in DepEd's machine-ready CRLA file, else 'not published'"
+     },
+     {
+      "name": "source_ids",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "learners_per_classroom_2023_24",
+      "type": "number",
+      "description": ""
+     }
+    ],
+    "primaryKey": "school_id",
+    "foreignKeys": [
+     {
+      "fields": "psgc_barangay_code",
+      "reference": {
+       "resource": "barangays",
+       "fields": "psgc_code"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "barangays",
+   "path": "barangays.csv",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "description": "Naga's 27 barangays (PSGC), public-school totals, and ECCD indicator slots (empty where not published)",
+   "schema": {
+    "fields": [
+     {
+      "name": "psgc_code",
+      "type": "string",
+      "description": "PSA 10-digit PSGC code (string)"
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "public_schools",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "private_schools",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "learners_public_2025_26",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "kinder_public_2025_26",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "staff_city_sef_2023_24",
+      "type": "integer",
+      "description": "School staff (teachers and non-teaching) paid from the City SEF, per DepEd's personnel file"
+     },
+     {
+      "name": "ict_items_lgu_sef_2023_24",
+      "type": "integer",
+      "description": "ICT equipment items DepEd lists as funded by the LGU or its SEF"
+     },
+     {
+      "name": "school_district",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "stunting_0_59m_opt",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "stunting_status",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "child_development_centres",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "cdc_status",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "crla_low_emerging_share",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "crla_status",
+      "type": "string",
+      "description": ""
+     }
+    ],
+    "primaryKey": "psgc_code"
+   }
+  },
+  {
+   "name": "districts",
+   "path": "districts.csv",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "description": "DepEd's four school districts in Naga, public-school totals",
+   "schema": {
+    "fields": [
+     {
+      "name": "school_district",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "public_schools",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "learners_2025_26",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "learners_2017_18",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "classrooms_instructional_2023_24",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "learners_2023_24",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "buildings_major_repair_or_worse_2023_24",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "staff_city_sef_2023_24",
+      "type": "integer",
+      "description": "School staff (teachers and non-teaching) paid from the City SEF, per DepEd's personnel file"
+     },
+     {
+      "name": "staff_other_lgu_2023_24",
+      "type": "integer",
+      "description": "School staff paid from other LGU funds, per DepEd's personnel file"
+     },
+     {
+      "name": "ict_items_lgu_sef_2023_24",
+      "type": "integer",
+      "description": "ICT equipment items DepEd lists as funded by the LGU or its SEF"
+     },
+     {
+      "name": "barangays",
+      "type": "integer",
+      "description": ""
+     }
+    ]
+   }
+  },
+  {
+   "name": "gaps",
+   "path": "gaps.csv",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "description": "Every record that could not be joined or has no public source: listed, not dropped",
+   "schema": {
+    "fields": [
+     {
+      "name": "kind",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "record_id",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "detail",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "source_id",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "resolved",
+      "type": "boolean",
+      "description": ""
+     }
+    ]
+   }
+  },
+  {
+   "name": "checks",
+   "path": "checks.csv",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "description": "Reconciliation checks on the sources (totals add up, splits add up)",
+   "schema": {
+    "fields": [
+     {
+      "name": "check_id",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "what",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "expected",
+      "type": "number",
+      "description": ""
+     },
+     {
+      "name": "actual",
+      "type": "number",
+      "description": ""
+     },
+     {
+      "name": "unit",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "source_id",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "url",
+      "type": "string",
+      "description": ""
+     }
+    ]
+   }
+  },
+  {
+   "name": "sources",
+   "path": "sources.csv",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "description": "Every source, its URL, period and sha256 (where downloaded)",
+   "schema": {
+    "fields": [
+     {
+      "name": "source_id",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "title",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "publisher",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "url",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "period",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "description": ""
+     },
+     {
+      "name": "sha256",
+      "type": "string",
+      "description": ""
+     }
+    ]
+   }
+  }
+ ]
+}

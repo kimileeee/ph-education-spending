@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.DS_Store
+.vercel
+.env*
+# DepEd's national CSVs (~150 MB); data/raw/manifest.json keeps URL + sha256, pipeline.fetch re-downloads them
+data/raw/deped/

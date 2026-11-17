@@ -1,0 +1,5 @@
+check_id,what,expected,actual,unit,status,source_id,url
+AB2026-total,"Annual Budget 2026, enacted by Ord. No. 2025-131: rows on the public Browse page add up to the page's stated total",1664699680.0,1664699680.0,PHP,match,naga-ab2026,https://budget.naga.gov.ph/annual/2026/browse
+AB2026-split,"Annual Budget 2026, enacted by Ord. No. 2025-131: PS + MOOE + FE + CO equals the row's total, for every row that gives a split (4 rows give only a total)",426.0,426.0,rows,match,naga-ab2026,https://budget.naga.gov.ph/annual/2026/browse
+AIP2027-total,Annual Investment Program 2027: rows on the public Browse page add up to the page's stated total,8698439574.0,8698439574.0,PHP,match,naga-aip2027,https://budget.naga.gov.ph/aip/2027/browse
+AIP2027-split,"Annual Investment Program 2027: PS + MOOE + FE + CO equals the row's total, for every row that gives a split (0 rows give only a total)",424.0,424.0,rows,match,naga-aip2027,https://budget.naga.gov.ph/aip/2027/browse

@@ -1,0 +1,44 @@
+// Source checks: sources, reconciliation checks, and the gap list (filter by kind, kept in the URL hash).
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const fmt = (v, unit) => (unit === "PHP" ? `₱${Number(v).toLocaleString("en-PH", { maximumFractionDigits: 2 })}` : `${Number(v).toLocaleString("en-PH")} ${unit}`);
+const KINDS = {
+  budget_line_no_place: "Budget row names no school or barangay",
+  crla_not_published: "Public school with no CRLA row",
+  school_not_in_2023_24: "School missing from the 2023-24 files",
+  sef_budget_not_published: "SEF budget not on the portal",
+  eccd_indicator_not_published: "ECCD indicator not published by barangay",
+  barangay_unmatched: "DepEd barangay not matched to PSGC",
+  barangay_alias: "DepEd barangay matched by hand",
+  barangay_no_public_school: "Barangay with no public school",
+};
+
+async function init() {
+  const [src, chk, gaps] = await Promise.all(["api/sources.json", "api/checks.json", "api/gaps.json"].map((p) => fetch(p).then((r) => r.json())));
+  $("sources").innerHTML = `<table><thead><tr><th class="l">Source</th><th class="l">Publisher</th><th class="l">Period</th><th class="l">Status</th></tr></thead><tbody>${
+    src.sources.map((s) => `<tr id="src-${esc(s.source_id)}"><td class="l"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a><br><code class="note">${esc(s.source_id)}</code></td>
+      <td class="l">${esc(s.publisher)}</td><td class="l nowrap">${esc(s.period)}</td>
+      <td class="l"><span class="result ${s.status === "used" ? "match" : "blank"}">${esc(s.status)}</span></td></tr>`).join("")}</tbody></table>`;
+  $("checks").innerHTML = `<table><thead><tr><th class="l">Check</th><th>Expected</th><th>Found</th><th class="l">Result</th></tr></thead><tbody>${
+    chk.checks.map((c) => `<tr><td class="l"><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.what)}</a></td>
+      <td class="nowrap">${fmt(c.expected, c.unit)}</td><td class="nowrap">${fmt(c.actual, c.unit)}</td>
+      <td class="l"><span class="result ${c.status}">${esc(c.status)}</span></td></tr>`).join("")}</tbody></table>`;
+  const counts = gaps.gaps.reduce((m, g) => ((m[g.kind] = (m[g.kind] || 0) + 1), m), {});
+  const kind = $("kind");
+  kind.innerHTML = `<option value="">All (${gaps.gaps.length})</option>` +
+    Object.entries(counts).map(([k, n]) => `<option value="${k}">${esc(KINDS[k] || k)} (${n})</option>`).join("");
+  const show = () => {
+    const k = kind.value;
+    history.replaceState(null, "", k ? `#gaps:${k}` : location.pathname);
+    const rows = gaps.gaps.filter((g) => !k || g.kind === k);
+    $("gaplist").innerHTML = `<table><thead><tr><th class="l">Kind</th><th class="l">Record</th><th class="l">Detail</th><th class="l">Source</th></tr></thead><tbody>${
+      rows.map((g) => `<tr><td class="l dom">${esc(KINDS[g.kind] || g.kind)}${g.resolved ? ` <span class="tag">resolved</span>` : ""}</td>
+        <td class="l"><code>${esc(g.record_id)}</code></td><td class="l">${esc(g.detail)}</td>
+        <td class="l"><a href="#src-${esc(g.source_id)}">${esc(g.source_id)}</a></td></tr>`).join("")}</tbody></table>`;
+  };
+  const m = location.hash.match(/^#gaps:(\w+)/);
+  if (m) kind.value = m[1];
+  kind.onchange = show;
+  show();
+}
+init().catch((e) => { $("sources").textContent = `Could not load: ${e.message}`; });

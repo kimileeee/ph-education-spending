@@ -1,0 +1,200 @@
+{
+ "city": {
+  "name": "City of Naga",
+  "type": "independent_component_city",
+  "psgc_id": "0501724000",
+  "parent_psgc_id": "0501700000",
+  "nicknames": null
+ },
+ "barangays": [
+  {
+   "name": "Abella",
+   "type": "barangay",
+   "psgc_id": "0501724001",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Bagumbayan Norte",
+   "type": "barangay",
+   "psgc_id": "0501724002",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Bagumbayan Sur",
+   "type": "barangay",
+   "psgc_id": "0501724003",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Balatas",
+   "type": "barangay",
+   "psgc_id": "0501724004",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Calauag",
+   "type": "barangay",
+   "psgc_id": "0501724006",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Cararayan",
+   "type": "barangay",
+   "psgc_id": "0501724007",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Carolina",
+   "type": "barangay",
+   "psgc_id": "0501724008",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Concepcion Grande",
+   "type": "barangay",
+   "psgc_id": "0501724009",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Concepcion Pequeña",
+   "type": "barangay",
+   "psgc_id": "0501724010",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Dayangdang",
+   "type": "barangay",
+   "psgc_id": "0501724011",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Del Rosario",
+   "type": "barangay",
+   "psgc_id": "0501724012",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Dinaga",
+   "type": "barangay",
+   "psgc_id": "0501724013",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Igualdad Interior",
+   "type": "barangay",
+   "psgc_id": "0501724014",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Lerma",
+   "type": "barangay",
+   "psgc_id": "0501724017",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Liboton",
+   "type": "barangay",
+   "psgc_id": "0501724018",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Mabolo",
+   "type": "barangay",
+   "psgc_id": "0501724019",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Pacol",
+   "type": "barangay",
+   "psgc_id": "0501724020",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Panicuason",
+   "type": "barangay",
+   "psgc_id": "0501724023",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Peñafrancia",
+   "type": "barangay",
+   "psgc_id": "0501724024",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Sabang",
+   "type": "barangay",
+   "psgc_id": "0501724025",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "San Felipe",
+   "type": "barangay",
+   "psgc_id": "0501724026",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "San Francisco",
+   "type": "barangay",
+   "psgc_id": "0501724027",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "San Isidro",
+   "type": "barangay",
+   "psgc_id": "0501724028",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Santa Cruz",
+   "type": "barangay",
+   "psgc_id": "0501724029",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Tabuco",
+   "type": "barangay",
+   "psgc_id": "0501724030",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Tinago",
+   "type": "barangay",
+   "psgc_id": "0501724031",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  },
+  {
+   "name": "Triangulo",
+   "type": "barangay",
+   "psgc_id": "0501724032",
+   "parent_psgc_id": "0501724000",
+   "nicknames": null
+  }
+ ]
+}

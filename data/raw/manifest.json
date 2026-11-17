@@ -1,0 +1,88 @@
+{
+ "_retrieved": "2026-11-17T08:22:41+00:00",
+ "deped/crla_2025-26_selected.csv": {
+  "bytes": 1341853,
+  "page": "https://www.deped.gov.ph/machine-ready-files/",
+  "sha256": "4a13a1caab0afbbc92f06ca92b2137369f40d2582bc78dfbe0c8455840867840",
+  "url": "https://www.deped.gov.ph/wp-content/uploads/Comprehensive-Rapid-Literacy-Assessment-CRLA-2025-2026.zip",
+  "zip_sha256": "e7237e424a46da3bdea74a1f6c738aa162c072a649c32a70a3c6d72f02a555c6"
+ },
+ "deped/ellna_2023-24_selected.csv": {
+  "bytes": 728685,
+  "page": "https://www.deped.gov.ph/machine-ready-files/",
+  "sha256": "a379ccd0cf48bf3ff1174fc76374627bd92f71d31f49fa73e59c9f57b1390dc2",
+  "url": "https://www.deped.gov.ph/wp-content/uploads/Early-Language-Literacy-and-Numeracy-Assessment-ELLNA.zip",
+  "zip_sha256": "d998d5c1af37c29a3247ae3e7f5d4d9aa3b0f34f94db391f55c1a8f587b7f124"
+ },
+ "deped/enrollment_2017-18.csv": {
+  "bytes": 17456255,
+  "page": "https://www.deped.gov.ph/machine-ready-files/",
+  "sha256": "673d6589d09e8f7860feede829752585bb25eb88e962d33f88043ba5fa40e939",
+  "url": "https://www.deped.gov.ph/wp-content/uploads/Enrollment-in-SY-2017-2018.zip",
+  "zip_sha256": "c9a0bd70e29ddacdd2936b68da87b517c2c3c8ace4c7928677efe9884a0666ca"
+ },
+ "deped/enrollment_2023-24.csv": {
+  "bytes": 19010469,
+  "page": "https://www.deped.gov.ph/machine-ready-files/",
+  "sha256": "cb9457d1dd12cccde880e0d8065212f16a4a5970ac525d5e2f8c90069f1c3657",
+  "url": "https://www.deped.gov.ph/wp-content/uploads/Enrollment-in-SY-2023-2024.zip",
+  "zip_sha256": "a10f4d0f9082919c13b3a091774c8231c99c95b1b1872310714107013b77dbbb"
+ },
+ "deped/enrollment_2025-26.csv": {
+  "bytes": 18840355,
+  "page": "https://www.deped.gov.ph/machine-ready-files/",
+  "sha256": "8c80173a7fc29eb3dd7b9e018d603022c731713d794945a8c9c2a2f0f190ee9e",
+  "url": "https://www.deped.gov.ph/wp-content/uploads/Enrollment-in-SY-2025-2026.zip",
+  "zip_sha256": "ab4d7e24b3a46a99db2c76dee5279a976e4c3a76062e79f7217e70dc6dd1b450"
+ },
+ "deped/facilities_2023-24.csv": {
+  "bytes": 11512476,
+  "page": "https://www.deped.gov.ph/machine-ready-files/",
+  "sha256": "cd60cc375fe8d4b4b4428fa2bafbe88436bbf7430e577343cfd291607429fb0e",
+  "url": "https://www.deped.gov.ph/wp-content/uploads/School-Facilities-in-SY-2023-2024.zip",
+  "zip_sha256": "9317af02b595d3a8d7381715780ef183a92da35354bbe0f3796045490e546609"
+ },
+ "deped/ict_2023-24.csv": {
+  "bytes": 49055183,
+  "page": "https://www.deped.gov.ph/machine-ready-files/",
+  "sha256": "49ae5cab7642a4dd9486252c92216957d186af7cdb1c97468d02d18e65715b06",
+  "url": "https://www.deped.gov.ph/wp-content/uploads/ICT-Data-in-SY-2023-2024.zip",
+  "zip_sha256": "dfb84b22cc6a60e16a7b3c5ecadc4a581d933e2b554c6fb248b400d18aa0885c"
+ },
+ "deped/nat_2023-24_selected.csv": {
+  "bytes": 920894,
+  "page": "https://www.deped.gov.ph/machine-ready-files/",
+  "sha256": "ddd3e019b0ad952cecce95566aff2ecb7b2b4ff4ce1135a2a1575b14f5f939bf",
+  "url": "https://www.deped.gov.ph/wp-content/uploads/National-Achievement-Test-NAT-Grade-6-2023-2024.zip",
+  "zip_sha256": "370eacc1b6ab5f8b8c36c7671a7300c4928255c9a98da4e752f61ba84f2950f0"
+ },
+ "deped/personnel_2023-24.csv": {
+  "bytes": 27335878,
+  "page": "https://www.deped.gov.ph/machine-ready-files/",
+  "sha256": "5d0dd4a244fc13401787d32f84f21ab5af295bf808f037a3f762efff7d6ed6c5",
+  "url": "https://www.deped.gov.ph/wp-content/uploads/School-Personnel-in-SY-2023-2024.zip",
+  "zip_sha256": "9d1e5adfc33d67244f0d1a796f1b8b1930f5704eadf9f901008da68d7764a817"
+ },
+ "geo/naga-barangays.json": {
+  "member": "geojson/municities/medres/bgysubmuns-municity-501724000.0.01.json",
+  "sha256": "55c8a2e4729624bc763b56a2a05e03bb062f23f5a297097126c59dacf6d16c03",
+  "url": "https://github.com/faeldon/philippines-json-maps/releases/download/v1.1.1/geojson-medres.zip"
+ },
+ "naga/AB2026.json": {
+  "detail_pages": 54,
+  "rows": 430,
+  "sha256": "6d53d4986ef1dd7b0671db69e53c14178a821ec2c21e0670b7b8075d2897134d",
+  "url": "https://budget.naga.gov.ph/annual/2026/browse"
+ },
+ "naga/AIP2027.json": {
+  "detail_pages": 89,
+  "rows": 424,
+  "sha256": "1e251ee0e634f702a995624eccfd76185dc3d544fea17ced8b8a2c450b765400",
+  "url": "https://budget.naga.gov.ph/aip/2027/browse"
+ },
+ "psgc/naga.json": {
+  "barangays": 27,
+  "sha256": "440755bcb8a119e1314104352c280b2096d58007baaeb487a589a1f54b445bad",
+  "url": "https://raw.githubusercontent.com/bendlikeabamboo/barangay/v2026.10.12.0/barangay/data/barangay_flat.json"
+ }
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source checks · Naga education spending</title>
+<meta name="description" content="Every source behind the Naga education spending prototype, with its period and status, the checks run on it, and every record that couldn't be joined.">
+<link rel="stylesheet" href="style.css?v=71c74a56d5">
+</head>
+<body>
+<header class="site"><nav aria-label="Site">
+  <a class="brand" href="./">Naga education spending<small>Prototype</small></a>
+  <a href="./">Explorer</a>
+  <a href="checks.html" aria-current="page">Source checks</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="data.html">Data &amp; API</a>
+  <a href="proposal.html">Proposal</a>
+</nav></header>
+<main>
+  <p class="eyebrow">Traceable to source, period and status</p>
+  <h1>Source checks</h1>
+  <p class="lede">Where each figure on this site comes from and what period it covers, whether the sources add up, and every record I couldn't match (listed at the bottom, so nothing quietly disappears).</p>
+
+  <section class="card" aria-labelledby="src-title">
+    <h2 id="src-title">Sources</h2>
+    <div class="tablewrap" style="max-height:none" id="sources"></div>
+  </section>
+
+  <section class="card" aria-labelledby="chk-title">
+    <h2 id="chk-title">Do the sources add up?</h2>
+    <div class="tablewrap" style="max-height:none" id="checks"></div>
+  </section>
+
+  <section class="card" aria-labelledby="gaps-title" id="gaps">
+    <h2 id="gaps-title">Unmatched and unpublished</h2>
+    <p class="note">Every school, barangay, budget row and indicator that couldn't be joined or has no public source. "Resolved" rows were matched by hand or are simply facts (a barangay with no public school), kept here so the matching can be checked.</p>
+    <div class="filters"><label>Kind <select id="kind"></select></label></div>
+    <div class="tablewrap" id="gaplist"></div>
+  </section>
+</main>
+<script src="checks.js?v=79af65ecde" defer></script>
+</body>
+</html>
