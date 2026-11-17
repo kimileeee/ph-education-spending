@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from pipeline.build import BARANGAY_ALIASES, DATA, DOMAINS, RULES, SITE
+from pipeline.build import BARANGAY_ALIASES, DATA, DOMAINS, LINE_RULES, RULES, SHEET_RULES, SITE
 from pipeline.fetch import DEPED_PAGE, GEO_TAG, PSGC_TAG
 
 TEMPLATES = Path(__file__).parent / "templates"
@@ -25,15 +25,15 @@ def pct(x, d=1) -> str:
 
 def crla_values(s: dict) -> dict:
     sch = pd.read_csv(DATA / "schools.csv", dtype={"school_id": str}, keep_default_na=False)
-    pub = sch[sch.sector == "Public"]
+    pub = sch[(sch.sector == "Public") & (sch.city == "naga")]
     es_missing = pub[(pub.offers_es.astype(str) == "True") & (pub.crla_2025_26 != "published")].school_name.tolist()
     got = pub[pub.crla_2025_26 == "published"].copy()
     got["share"] = got.crla_low_emerging.astype(float) / got.crla_assessed.astype(float)
     top = got.sort_values("share").iloc[-1]
-    d = pd.read_csv(DATA / "districts.csv").sort_values("crla_low_emerging_share")
+    d = pd.read_csv(DATA / "districts.csv").query("city == 'naga'").sort_values("crla_low_emerging_share")
     c, o = s["crla"], s["opt_2025_city"]
     return {
-        "crla_note": json.loads((DATA / "raw" / "edcom2" / "naga.json").read_text())["crla_source_note"].removeprefix("Source: "),
+        "crla_note": json.loads((DATA / "raw" / "edcom2" / "cities.json").read_text())["crla_source_note"].removeprefix("Source: "),
         "crla_missing_es": " and ".join(es_missing) or "none",
         "crla_low": n(c["low_emerging"]), "crla_assessed": n(c["assessed"]),
         "crla_low_share": pct(c["low_emerging_share"]), "crla_struggling_share": pct(c["struggling_share"]),
@@ -44,6 +44,32 @@ def crla_values(s: dict) -> dict:
         "opt_share": pct(o["stunted_or_severely_share"]), "opt_e2_st": n(o["edcom2_measure_stunted"]),
         "opt_e2_n": n(o["edcom2_measure_children"]), "opt_e2_share": pct(o["edcom2_measure_stunted"] / o["edcom2_measure_children"]),
     }
+
+
+def other_cities(top: dict) -> dict:
+    """{{z_*}} for Zamboanga City and {{c_*}} for Cagayan de Oro."""
+    out = {}
+    for slug, p in (("zamboanga", "z"), ("cdo", "c")):
+        s = top["cities"][slug]
+        b = s["budget"]["AB2026"]
+        d = pd.read_csv(DATA / "districts.csv").query("city == @slug").sort_values("crla_low_emerging_share")
+        out |= {
+            f"{p}_public": n(s["schools"]["public"]), f"{p}_districts": n(s["schools"]["districts"]),
+            f"{p}_learners": n(s["learners_public_2025_26"]), f"{p}_barangays": n(s["barangays"]),
+            f"{p}_crla_schools": n(s["public_schools_with_crla"]), f"{p}_es": n(s["public_elementary_schools"]),
+            f"{p}_crla_low_share": pct(s["crla"]["low_emerging_share"]), f"{p}_crla_assessed": n(s["crla"]["assessed"]),
+            f"{p}_crla_dist_min": f"{pct(d.iloc[0].crla_low_emerging_share)} in {d.iloc[0].school_district}",
+            f"{p}_crla_dist_max": f"{pct(d.iloc[-1].crla_low_emerging_share)} in {d.iloc[-1].school_district}",
+            f"{p}_opt_share": pct(s["opt_2025_city"]["stunted_or_severely_share"]),
+            f"{p}_opt_n": n(s["opt_2025_city"]["stunted_or_severely"]), f"{p}_opt_measured": n(s["opt_2025_city"]["children_measured"]),
+            f"{p}_no_cdc": n(s["barangays_on_no_cdc_list"]), f"{p}_staff_sef": n(s["staff_city_sef_2023_24"]),
+            f"{p}_edu": peso_m(b["education_ecd_total"]), f"{p}_edu_lines": n(b["education_ecd_lines"]),
+            f"{p}_book_total": peso_m(b["document_total"]), f"{p}_sheets": n(b["rows_in_document"]),
+            f"{p}_named_lines": n(b["school_named_lines"]), f"{p}_named_matched": n(b["school_named_matched"]),
+            f"{p}_named_total": peso_m(b["school_named_total"]), f"{p}_eccd": peso_m(b["by_domain"].get("early_childhood", 0)),
+            f"{p}_page": s["budget_page"],
+        }
+    return out
 
 
 def n(x) -> str:
@@ -59,9 +85,11 @@ def peso_m(x) -> str:
 
 
 def values() -> dict[str, str]:
-    s = json.loads((DATA / "stats.json").read_text())
-    bud = pd.read_csv(DATA / "budget_lines.csv", dtype={"aip_reference_code": str}, keep_default_na=False)
-    gaps = pd.read_csv(DATA / "gaps.csv", dtype=str, keep_default_na=False)
+    top = json.loads((DATA / "stats.json").read_text())
+    s = top["cities"]["naga"]
+    s["gaps"] = top["gaps"]["naga"]
+    bud = pd.read_csv(DATA / "budget_lines.csv", dtype={"aip_reference_code": str}, keep_default_na=False).query("city == 'naga'")
+    gaps = pd.read_csv(DATA / "gaps.csv", dtype=str, keep_default_na=False).query("city == 'naga'")
     crla = pd.read_csv(DATA.parent / "data" / "raw" / "deped" / "crla_2025-26_selected.csv", dtype=str, usecols=["region"])
     a, b = s["budget"]["AIP2027"], s["budget"]["AB2026"]
     aip = bud[bud.cycle == "AIP2027"]
@@ -70,7 +98,10 @@ def values() -> dict[str, str]:
                     f"<td>{DOMAINS[d][0]}</td></tr>" for r, o, p, d in RULES)
     default = ", ".join(v[0].lower() for v in DOMAINS.values() if v[1])
     return {
-        "built": s["built_at"][:10], "deped_page": DEPED_PAGE,
+        "built": top["built_at"][:10], "deped_page": DEPED_PAGE, "lgu_compare": top["lgu_compare_url"],
+        **other_cities(top),
+        "ordinance_rules_rows": "".join(f"<tr><td><code>{r}</code></td><td>{'sheet' if k == 's' else 'line'}</td><td>{html.escape(p)}</td><td>{DOMAINS[d][0]}</td></tr>"
+                                        for k, rules_ in (("s", SHEET_RULES), ("l", LINE_RULES)) for r, p, d in rules_),
         "schools_all": n(s["schools"]["all"]), "schools_public": n(s["schools"]["public"]),
         "schools_private": n(s["schools"]["private"]), "districts": n(s["schools"]["districts"]),
         "learners_public": n(s["learners_public_2025_26"]), "learners_2017": n(s["learners_public_2017_18"]),
@@ -85,10 +116,10 @@ def values() -> dict[str, str]:
         "crla_regions": ", ".join(sorted(crla.region.unique())),
         "barangays": n(s["barangays"]), "barangays_with_school": n(s["barangays_with_public_school"]),
         "matched": n(s["schools_matched_to_psgc"]),
-        "alias_list": "; ".join(f"DepEd's \"{k.title()}\" is PSGC's \"{v}\"" for k, v in BARANGAY_ALIASES.items()),
+        "alias_list": "; ".join(f"DepEd's \"{k.title()}\" is PSGC's \"{v}\"" for k, v in BARANGAY_ALIASES["naga"].items()),
         "alias_schools": n(len(gaps[gaps.kind == "barangay_alias"])),
-        "aip_rows": n(a["rows_on_portal"]), "aip_total": peso_m(a["portal_total"]),
-        "ab_rows": n(b["rows_on_portal"]), "ab_total": peso_m(b["portal_total"]),
+        "aip_rows": n(a["rows_in_document"]), "aip_total": peso_m(a["document_total"]),
+        "ab_rows": n(b["rows_in_document"]), "ab_total": peso_m(b["document_total"]),
         "aip_scope": n(a["lines_in_scope"]), "ab_scope": n(b["lines_in_scope"]),
         "aip_edu": peso_m(a["education_ecd_total"]), "aip_edu_lines": n(a["education_ecd_lines"]),
         "ab_edu": peso_m(b["education_ecd_total"]), "ab_edu_lines": n(b["education_ecd_lines"]),
@@ -97,8 +128,8 @@ def values() -> dict[str, str]:
         "aip_queen": peso_m(named(r"QUEEN")), "aip_scholar": peso_m(named(r"scholar")),
         "lines_with_place": n(a["lines_with_place_code"] + b["lines_with_place_code"]),
         "lines_total": n(a["education_ecd_lines"] + b["education_ecd_lines"]),
-        "checks": n(s["checks"]), "checks_match": n(s["checks_matching"]),
-        "gaps_total": n(sum(s["gaps"].values())),
+        "checks": n(top["checks"]), "checks_match": n(top["checks_matching"]),
+        "gaps_total": n(sum(v for g in top["gaps"].values() for v in g.values())),
         "psgc_tag": PSGC_TAG, "geo_tag": GEO_TAG, "rules_rows": rules, "default_domains": default,
         "diagram": diagram(),
     }
@@ -106,7 +137,7 @@ def values() -> dict[str, str]:
 
 # ---------------------------------------------------------------- flow diagram (wide and tall drawings of one graph)
 COLS = [  # (heading, boxes); a box is (title, subtitle, built?)
-    ("SOURCES", [("City AIP and budget", "budget.naga.gov.ph public pages", True),
+    ("SOURCES", [("City AIP and budget", "portal pages, ordinance PDFs", True),
                  ("DepEd school data", "Project Bukas machine-ready files", True),
                  ("ECCD indicators", "OPT+, CRLA, CBMS by barangay", False),
                  ("Procurement", "PPMP items, PhilGEPS notices", False)]),

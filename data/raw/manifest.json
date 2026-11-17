@@ -1,5 +1,11 @@
 {
- "_retrieved": "2026-11-17T14:27:13+00:00",
+ "_retrieved": "2026-11-17T14:45:59+00:00",
+ "cdo/ab-2026.json": {
+  "page": "https://www.cdeocitycouncil.com/downloadables",
+  "parsed_by": "stride-lgu-intel scripts/parse_budget_cdo.py",
+  "sha256": "d2dd111e1ac57ed8b27beeb43e7485d256cd81bfcc952fde725d6639a54bcb66",
+  "url": "https://www.cdeocitycouncil.com/_files/ugd/01f3e2_6771fa1cf8cd44879dfa8c43999e0aa2.pdf"
+ },
  "deped/crla_2025-26_selected.csv": {
   "bytes": 1341853,
   "page": "https://www.deped.gov.ph/machine-ready-files/",
@@ -63,15 +69,23 @@
   "url": "https://www.deped.gov.ph/wp-content/uploads/School-Personnel-in-SY-2023-2024.zip",
   "zip_sha256": "9d1e5adfc33d67244f0d1a796f1b8b1930f5704eadf9f901008da68d7764a817"
  },
- "edcom2/naga.json": {
-  "barangays": 27,
-  "crla_schools": 30,
-  "sha256": "d4b2b42953a610871393e35c2a5218a090169b9ddaff52f3ae49c2da3c3fddd4",
+ "edcom2/cities.json": {
+  "sha256": "00798d913823dad7cc021fbbadb41e9bf0a4b4236f85a723ec9be5711364626f",
   "url": "https://public.tableau.com/workbooks/EDCOM-dashboard_17847969310080.twb"
+ },
+ "geo/cdo-barangays.json": {
+  "member": "geojson/municities/medres/bgysubmuns-municity-1030500000.0.01.json",
+  "sha256": "a2018f77e5e9a96bf7be85bc8dfc993c805404b025ac06af7219d8343c08e516",
+  "url": "https://github.com/faeldon/philippines-json-maps/releases/download/v1.1.1/geojson-medres.zip"
  },
  "geo/naga-barangays.json": {
   "member": "geojson/municities/medres/bgysubmuns-municity-501724000.0.01.json",
   "sha256": "55c8a2e4729624bc763b56a2a05e03bb062f23f5a297097126c59dacf6d16c03",
+  "url": "https://github.com/faeldon/philippines-json-maps/releases/download/v1.1.1/geojson-medres.zip"
+ },
+ "geo/zamboanga-barangays.json": {
+  "member": "geojson/municities/medres/bgysubmuns-municity-931700000.0.01.json",
+  "sha256": "ed2a51580f85a0dd77f0a9ab792fee024447e3d3eebe7c090b92b38f99065e9f",
   "url": "https://github.com/faeldon/philippines-json-maps/releases/download/v1.1.1/geojson-medres.zip"
  },
  "naga/AB2026.json": {
@@ -86,9 +100,25 @@
   "sha256": "1e251ee0e634f702a995624eccfd76185dc3d544fea17ced8b8a2c450b765400",
   "url": "https://budget.naga.gov.ph/aip/2027/browse"
  },
+ "psgc/cdo.json": {
+  "barangays": 80,
+  "sha256": "440755bcb8a119e1314104352c280b2096d58007baaeb487a589a1f54b445bad",
+  "url": "https://raw.githubusercontent.com/bendlikeabamboo/barangay/v2026.10.12.0/barangay/data/barangay_flat.json"
+ },
  "psgc/naga.json": {
   "barangays": 27,
   "sha256": "440755bcb8a119e1314104352c280b2096d58007baaeb487a589a1f54b445bad",
   "url": "https://raw.githubusercontent.com/bendlikeabamboo/barangay/v2026.10.12.0/barangay/data/barangay_flat.json"
+ },
+ "psgc/zamboanga.json": {
+  "barangays": 98,
+  "sha256": "440755bcb8a119e1314104352c280b2096d58007baaeb487a589a1f54b445bad",
+  "url": "https://raw.githubusercontent.com/bendlikeabamboo/barangay/v2026.10.12.0/barangay/data/barangay_flat.json"
+ },
+ "zamboanga/ab-2026.json": {
+  "page": "https://zamboangacity.gov.ph/appropriation/",
+  "parsed_by": "stride-lgu-intel scripts/parse_budget_zamboanga.py",
+  "sha256": "b970b1f40ee4d69c3c8030652caefd6238506f384eb9885b6185528a12c92e64",
+  "url": "https://zamboangacity.gov.ph/appropriation/"
  }
 }

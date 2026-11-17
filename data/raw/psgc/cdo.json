@@ -1,0 +1,571 @@
+{
+ "city": {
+  "name": "City of Cagayan De Oro",
+  "type": "highly_urbanized_city",
+  "psgc_id": "1030500000",
+  "parent_psgc_id": "1000000000",
+  "nicknames": null
+ },
+ "barangays": [
+  {
+   "name": "Agusan",
+   "type": "barangay",
+   "psgc_id": "1030500001",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Baikingon",
+   "type": "barangay",
+   "psgc_id": "1030500002",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Bulua",
+   "type": "barangay",
+   "psgc_id": "1030500003",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Balubal",
+   "type": "barangay",
+   "psgc_id": "1030500004",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Balulang",
+   "type": "barangay",
+   "psgc_id": "1030500005",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 10",
+   "type": "barangay",
+   "psgc_id": "1030500006",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 11",
+   "type": "barangay",
+   "psgc_id": "1030500007",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 12",
+   "type": "barangay",
+   "psgc_id": "1030500008",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 13",
+   "type": "barangay",
+   "psgc_id": "1030500009",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 14",
+   "type": "barangay",
+   "psgc_id": "1030500010",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 15",
+   "type": "barangay",
+   "psgc_id": "1030500011",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 16",
+   "type": "barangay",
+   "psgc_id": "1030500012",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 17",
+   "type": "barangay",
+   "psgc_id": "1030500013",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 18",
+   "type": "barangay",
+   "psgc_id": "1030500014",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 19",
+   "type": "barangay",
+   "psgc_id": "1030500015",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 2",
+   "type": "barangay",
+   "psgc_id": "1030500016",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 21",
+   "type": "barangay",
+   "psgc_id": "1030500017",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 22",
+   "type": "barangay",
+   "psgc_id": "1030500018",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 23",
+   "type": "barangay",
+   "psgc_id": "1030500019",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 24",
+   "type": "barangay",
+   "psgc_id": "1030500020",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 26",
+   "type": "barangay",
+   "psgc_id": "1030500021",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 27",
+   "type": "barangay",
+   "psgc_id": "1030500022",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 28",
+   "type": "barangay",
+   "psgc_id": "1030500023",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 3",
+   "type": "barangay",
+   "psgc_id": "1030500024",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 30",
+   "type": "barangay",
+   "psgc_id": "1030500025",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 32",
+   "type": "barangay",
+   "psgc_id": "1030500026",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 33",
+   "type": "barangay",
+   "psgc_id": "1030500027",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 34",
+   "type": "barangay",
+   "psgc_id": "1030500028",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 38",
+   "type": "barangay",
+   "psgc_id": "1030500029",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 39",
+   "type": "barangay",
+   "psgc_id": "1030500030",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 4",
+   "type": "barangay",
+   "psgc_id": "1030500031",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 40",
+   "type": "barangay",
+   "psgc_id": "1030500032",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 6",
+   "type": "barangay",
+   "psgc_id": "1030500033",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 8",
+   "type": "barangay",
+   "psgc_id": "1030500034",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 9",
+   "type": "barangay",
+   "psgc_id": "1030500035",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 5",
+   "type": "barangay",
+   "psgc_id": "1030500036",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Bayabas",
+   "type": "barangay",
+   "psgc_id": "1030500037",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Bayanga",
+   "type": "barangay",
+   "psgc_id": "1030500038",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Besigan",
+   "type": "barangay",
+   "psgc_id": "1030500039",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Bonbon",
+   "type": "barangay",
+   "psgc_id": "1030500040",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Bugo",
+   "type": "barangay",
+   "psgc_id": "1030500041",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Camaman-an",
+   "type": "barangay",
+   "psgc_id": "1030500042",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Canito-an",
+   "type": "barangay",
+   "psgc_id": "1030500043",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Carmen",
+   "type": "barangay",
+   "psgc_id": "1030500044",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Consolacion",
+   "type": "barangay",
+   "psgc_id": "1030500045",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Cugman",
+   "type": "barangay",
+   "psgc_id": "1030500046",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Dansolihon",
+   "type": "barangay",
+   "psgc_id": "1030500047",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "F. S. Catanico",
+   "type": "barangay",
+   "psgc_id": "1030500048",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Gusa",
+   "type": "barangay",
+   "psgc_id": "1030500049",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Indahag",
+   "type": "barangay",
+   "psgc_id": "1030500050",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Iponan",
+   "type": "barangay",
+   "psgc_id": "1030500051",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Kauswagan",
+   "type": "barangay",
+   "psgc_id": "1030500052",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Lapasan",
+   "type": "barangay",
+   "psgc_id": "1030500053",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Lumbia",
+   "type": "barangay",
+   "psgc_id": "1030500054",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Macabalan",
+   "type": "barangay",
+   "psgc_id": "1030500055",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Macasandig",
+   "type": "barangay",
+   "psgc_id": "1030500056",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Mambuaya",
+   "type": "barangay",
+   "psgc_id": "1030500057",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Nazareth",
+   "type": "barangay",
+   "psgc_id": "1030500058",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Pagalungan",
+   "type": "barangay",
+   "psgc_id": "1030500059",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Pagatpat",
+   "type": "barangay",
+   "psgc_id": "1030500060",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Patag",
+   "type": "barangay",
+   "psgc_id": "1030500061",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Pigsag-an",
+   "type": "barangay",
+   "psgc_id": "1030500062",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Puerto",
+   "type": "barangay",
+   "psgc_id": "1030500063",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Puntod",
+   "type": "barangay",
+   "psgc_id": "1030500064",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "San Simon",
+   "type": "barangay",
+   "psgc_id": "1030500065",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Tablon",
+   "type": "barangay",
+   "psgc_id": "1030500067",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Taglimao",
+   "type": "barangay",
+   "psgc_id": "1030500068",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Tagpangi",
+   "type": "barangay",
+   "psgc_id": "1030500069",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Tignapoloan",
+   "type": "barangay",
+   "psgc_id": "1030500070",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Tuburan",
+   "type": "barangay",
+   "psgc_id": "1030500071",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Tumpagon",
+   "type": "barangay",
+   "psgc_id": "1030500072",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 1",
+   "type": "barangay",
+   "psgc_id": "1030500073",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 7",
+   "type": "barangay",
+   "psgc_id": "1030500074",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 20",
+   "type": "barangay",
+   "psgc_id": "1030500075",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 25",
+   "type": "barangay",
+   "psgc_id": "1030500076",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 29",
+   "type": "barangay",
+   "psgc_id": "1030500077",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 31",
+   "type": "barangay",
+   "psgc_id": "1030500078",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 35",
+   "type": "barangay",
+   "psgc_id": "1030500079",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 36",
+   "type": "barangay",
+   "psgc_id": "1030500080",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  },
+  {
+   "name": "Barangay 37",
+   "type": "barangay",
+   "psgc_id": "1030500081",
+   "parent_psgc_id": "1030500000",
+   "nicknames": null
+  }
+ ]
+}

@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Naga education spending · Explorer</title>
-<meta name="description" content="Naga City's education and early-childhood budget rows next to DepEd's school data for the Schools Division of Naga City, keyed by school ID and PSGC barangay code. A BetterGov Fellowship 2026 prototype.">
+<title>City education spending · Explorer</title>
+<meta name="description" content="Education and early-childhood budget rows of Naga, Zamboanga City and Cagayan de Oro next to DepEd's school data and EDCOM 2's early-childhood figures, keyed by school ID and PSGC barangay code. A BetterGov Fellowship 2026 prototype.">
 <link rel="stylesheet" href="style.css?v=71c74a56d5">
 </head>
 <body>
 <header class="site"><nav aria-label="Site">
-  <a class="brand" href="./">Naga education spending<small>Prototype</small></a>
+  <a class="brand" href="./">City education spending<small>Prototype</small></a>
   <a href="./" aria-current="page">Explorer</a>
   <a href="checks.html">Source checks</a>
   <a href="methodology.html">Methodology</a>
@@ -17,9 +17,9 @@
   <a href="proposal.html">Proposal</a>
 </nav></header>
 <main>
-  <p class="eyebrow">BetterGov Fellowship 2026 · Basic education and early childhood · City of Naga</p>
-  <h1>Naga's education money, next to its schools</h1>
-  <p class="lede">The City's own budget rows for schools and young children, set beside what DepEd publishes about each public school in Naga. I used published data only, so where a number isn't public at the level shown (stunting by barangay, for one), it's marked "not published" and left empty.</p>
+  <p class="eyebrow">BetterGov Fellowship 2026 · Basic education and early childhood</p>
+  <h1>A city's education money, next to its schools</h1>
+  <p class="lede">Each city's own budget rows for schools and young children, set beside what DepEd publishes about each of its public schools. Naga first, where the budget is already published as data, then Zamboanga City and Cagayan de Oro, read from their ordinance PDFs. I used published data only, so where a number isn't public at the level shown (stunting by barangay, for one), it's marked "not published" and left empty.</p>
 
   <div class="callout" id="realkey">
     <div class="realkey">
@@ -28,13 +28,15 @@
     </div>
   </div>
 
+  <div class="filters" style="margin-top:16px"><span class="label" style="margin:0">City</span><div class="seg" role="group" aria-label="City" id="city"></div></div>
+
   <section class="card" aria-labelledby="city-title">
-    <h2 id="city-title">City of Naga <span class="tag">PSGC 0501724000</span></h2>
+    <h2 id="city-title">City</h2>
     <div class="tiles" id="tiles"><p class="note">Loading…</p></div>
   </section>
 
   <section class="card" aria-labelledby="budget-title">
-    <h2 id="budget-title">The City's budget rows</h2>
+    <h2 id="budget-title">The city's budget rows</h2>
     <div class="filters">
       <div class="seg" role="group" aria-label="Document" id="cycle"></div>
       <div class="seg" role="group" aria-label="Rows" id="scope"></div>
@@ -57,6 +59,6 @@
 
   <p class="note" style="margin-top:24px" id="built"></p>
 </main>
-<script src="app.js?v=aaeb8c8be3" defer></script>
+<script src="app.js?v=229909141a" defer></script>
 </body>
 </html>

@@ -13,14 +13,17 @@ async function init() {
   spec = await (await fetch("openapi.json")).json();
 
   const peso = (v) => `₱${(v / 1e6).toLocaleString("en-PH", { maximumFractionDigits: 1 })}M`;
-  const aip = stats.budget.AIP2027;
+  const cs = Object.values(stats.cities), sum = (f) => cs.reduce((t, c) => t + f(c), 0);
+  const lines = sum((c) => Object.values(c.budget).reduce((t, b) => t + b.education_ecd_lines, 0));
+  const placed = sum((c) => Object.values(c.budget).reduce((t, b) => t + b.school_named_matched, 0));
+  const crla = { a: sum((c) => c.crla.assessed), l: sum((c) => c.crla.low_emerging) };
   $("stats").innerHTML = [
-    [peso(aip.education_ecd_total), `in ${aip.education_ecd_lines} education and early-childhood rows of the 2027 AIP`],
-    [peso(aip.sef_total), "of it in one SEF row, with no school named"],
-    [`${aip.lines_with_place_code + stats.budget.AB2026.lines_with_place_code}`, "budget rows that name a school or barangay"],
-    [stats.schools.public, `public schools, ${stats.learners_public_2025_26.toLocaleString("en-PH")} learners (SY 2025-26)`],
-    [stats.staff_city_sef_2023_24, "school staff DepEd lists as paid from the City SEF (SY 2023-24)"],
-    [`${(stats.crla.low_emerging_share * 100).toFixed(1)}%`, `low emerging readers, ${stats.crla.assessed.toLocaleString("en-PH")} assessed at ${stats.public_schools_with_crla} public schools (CRLA, end of SY 2025-26)`],
+    [cs.length, cs.map((c) => c.name.replace("City of ", "")).join(", ")],
+    [lines, `education and early-childhood budget rows (${placed} placed at a named school)`],
+    [sum((c) => c.schools.public), `public schools, ${sum((c) => c.learners_public_2025_26).toLocaleString("en-PH")} learners (SY 2025-26)`],
+    [sum((c) => c.staff_city_sef_2023_24), "school staff DepEd lists as paid from a City SEF (SY 2023-24)"],
+    [`${((crla.l / crla.a) * 100).toFixed(1)}%`, `low emerging readers, ${crla.a.toLocaleString("en-PH")} assessed (CRLA, end of SY 2025-26)`],
+
   ].map(([v, k]) => `<div><div class="v">${v}</div><div class="k">${esc(k)}</div></div>`).join("");
 
   $("files").innerHTML = `<table><thead><tr><th class="l">Table</th><th class="l">What it holds</th><th>Rows</th><th>Fields</th><th class="l">Download</th></tr></thead><tbody>${

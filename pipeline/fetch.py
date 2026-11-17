@@ -39,15 +39,30 @@ DEPED_FILES = {  # file we keep -> zip it comes in (names as DepEd publishes the
     "ellna_2023-24_selected.csv": "Early-Language-Literacy-and-Numeracy-Assessment-ELLNA.zip",
     "nat_2023-24_selected.csv": "National-Achievement-Test-NAT-Grade-6-2023-2024.zip",
 }
-DIVISION = "Naga City"  # DepEd's Schools Division of Naga City
+# The cities this prototype covers. budget: "portal" = Naga's People's Budget Portal (public pages);
+# "ordinance" = the city's own appropriation ordinance PDF, machine-read by Stride's lgu-intel parsers.
+CITIES = {
+    "naga": {"name": "City of Naga", "province": "Camarines Sur", "psgc": "0501724000", "division": "Naga City", "budget": "portal",
+             "budget_page": "https://peoples-budget.stridetech.workers.dev/lgus/naga"},
+    "zamboanga": {"name": "City of Zamboanga", "province": "Zamboanga del Sur (independent)", "psgc": "0931700000",
+                  "division": "Zamboanga City", "budget": "ordinance", "intel": "zamboanga",
+                  "budget_page": "https://peoples-budget.stridetech.workers.dev/lgus/zamboanga"},
+    "cdo": {"name": "City of Cagayan de Oro", "province": "Misamis Oriental (independent)", "psgc": "1030500000",
+            "division": "Cagayan de Oro City", "budget": "ordinance", "intel": "cdo",
+            "budget_page": "https://peoples-budget.stridetech.workers.dev/lgus/cagayan-de-oro"},
+}
+ORDINANCE_FY = 2026  # latest enacted year in both ordinance books (Zamboanga's FY 2027 reads at 76%, too low)
+LGU_COMPARE = "https://peoples-budget.stridetech.workers.dev/lgus/explore"  # Stride's LGU budget comparison pages
+LGU_INTEL = Path.home() / "Documents/GitHub/stride/stride-lgu-intel/data/budgets"
+DIVISION = CITIES["naga"]["division"]
 
 PSGC_TAG = "v2026.10.12.0"
 PSGC_URL = f"https://raw.githubusercontent.com/bendlikeabamboo/barangay/{PSGC_TAG}/barangay/data/barangay_flat.json"
-NAGA_PSGC = "0501724000"  # City of Naga, Camarines Sur (independent component city)
+NAGA_PSGC = CITIES["naga"]["psgc"]
 
 GEO_TAG = "v1.1.1"
 GEO_URL = f"https://github.com/faeldon/philippines-json-maps/releases/download/{GEO_TAG}/geojson-medres.zip"
-GEO_FILE = "geojson/municities/medres/bgysubmuns-municity-501724000.0.01.json"  # faeldon drops the leading zero
+GEO_FILE = "geojson/municities/medres/bgysubmuns-municity-{code}.0.01.json"  # faeldon drops the leading zero
 
 PORTAL = "https://budget.naga.gov.ph"
 CYCLES = {"AB2026": "/annual/2026/browse", "AIP2027": "/aip/2027/browse"}
@@ -114,21 +129,24 @@ def fetch_deped(manifest: dict) -> None:
 def fetch_psgc(manifest: dict) -> None:
     blob = get(PSGC_URL)
     places = json.loads(blob)
-    rows = [p for p in places if p["parent_psgc_id"] == NAGA_PSGC and p["type"] == "barangay"]
-    city = next(p for p in places if p["psgc_id"] == NAGA_PSGC)
     (RAW / "psgc").mkdir(parents=True, exist_ok=True)
-    (RAW / "psgc" / "naga.json").write_text(json.dumps({"city": city, "barangays": rows}, ensure_ascii=False, indent=1))
-    manifest["psgc/naga.json"] = {"url": PSGC_URL, "sha256": sha(blob), "barangays": len(rows)}
-    print(f"psgc: {len(rows)} barangays")
+    for slug, c in CITIES.items():
+        rows = [p for p in places if p["parent_psgc_id"] == c["psgc"] and p["type"] == "barangay"]
+        city = next(p for p in places if p["psgc_id"] == c["psgc"])
+        (RAW / "psgc" / f"{slug}.json").write_text(json.dumps({"city": city, "barangays": rows}, ensure_ascii=False, indent=1))
+        manifest[f"psgc/{slug}.json"] = {"url": PSGC_URL, "sha256": sha(blob), "barangays": len(rows)}
+        print(f"psgc {slug}: {len(rows)} barangays")
 
 
 def fetch_geo(manifest: dict) -> None:
     blob = get(GEO_URL)
-    with zipfile.ZipFile(io.BytesIO(blob)) as z:
-        data = z.read(GEO_FILE)
     (RAW / "geo").mkdir(parents=True, exist_ok=True)
-    (RAW / "geo" / "naga-barangays.json").write_bytes(data)
-    manifest["geo/naga-barangays.json"] = {"url": GEO_URL, "member": GEO_FILE, "sha256": sha(data)}
+    with zipfile.ZipFile(io.BytesIO(blob)) as z:
+        for slug, c in CITIES.items():
+            member = GEO_FILE.format(code=c["psgc"].lstrip("0"))
+            data = z.read(member)
+            (RAW / "geo" / f"{slug}-barangays.json").write_bytes(data)
+            manifest[f"geo/{slug}-barangays.json"] = {"url": GEO_URL, "member": member, "sha256": sha(data)}
     print("geo: ok")
 
 
@@ -184,25 +202,46 @@ def fetch_edcom2(manifest: dict) -> None:
     for need in ("school_crla_EOSY", "prov_stunting_2025", "matching_table_v3"):
         if need not in tables:
             raise RuntimeError(f"EDCOM 2 workbook no longer has {need}")
-    city = NAGA_PSGC.lstrip("0")
-    stunting = [r for r in tables["prov_stunting_2025"] if str(r.get("F1")) == city]
-    if len(stunting) != 1:
-        raise RuntimeError("expected one OPT+ 2025 row for the City of Naga")
+    per_city = {}
+    for slug, c in CITIES.items():
+        stunting = [r for r in tables["prov_stunting_2025"] if str(r.get("F1")) == c["psgc"].lstrip("0")]
+        if len(stunting) != 1:
+            raise RuntimeError(f"expected one OPT+ 2025 row for {c['name']}")
+        per_city[slug] = {
+            "crla": [r for r in tables["school_crla_EOSY"] if r.get("Division") == c["division"]],
+            "opt_2025_city": {caps.get(k, k): v for k, v in stunting[0].items()},
+            "barangays": [r for r in tables["matching_table_v3"] if str(r.get("psgc_code", "")).zfill(10).startswith(c["psgc"][:7])],
+        }
     doc = {
         "workbook": f"https://public.tableau.com/views/{EDCOM2_WB}/Overview", "page": EDCOM2_PAGE,
         "author": meta.get("authorName"), "allow_data_access": True,
         "workbook_updated": datetime.fromtimestamp(meta["lastUpdateDate"] / 1000, timezone.utc).isoformat(timespec="seconds"),
         "retrieved": now(),
         "crla_source_note": crla_note.group(0).strip() if crla_note else "",
-        "crla": [r for r in tables["school_crla_EOSY"] if r.get("Division") == DIVISION],
-        "opt_2025_city": {caps.get(k, k): v for k, v in stunting[0].items()},
-        "barangays": [r for r in tables["matching_table_v3"] if str(r.get("psgc_code", "")).zfill(10).startswith(NAGA_PSGC[:7])],
         "no_cdc_list_rows_total": len(tables.get("barangay_cdc", [])),
+        "cities": per_city,
     }
-    (out / "naga.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1, default=str))
-    manifest["edcom2/naga.json"] = {"url": f"https://public.tableau.com/workbooks/{EDCOM2_WB}.twb", "sha256": sha(blob),
-                                    "crla_schools": len(doc["crla"]), "barangays": len(doc["barangays"])}
-    print(f"edcom2: {len(doc['crla'])} CRLA schools, {len(doc['barangays'])} barangays, OPT+ city row")
+    (out / "cities.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1, default=str))
+    manifest["edcom2/cities.json"] = {"url": f"https://public.tableau.com/workbooks/{EDCOM2_WB}.twb", "sha256": sha(blob)}
+    for slug, v in per_city.items():
+        print(f"edcom2 {slug}: {len(v['crla'])} CRLA schools, {len(v['barangays'])} barangays, OPT+ city row")
+
+
+def fetch_ordinances(manifest: dict) -> None:
+    """Copy each ordinance city's machine-read book (Stride's lgu-intel parser output, read from the city's own PDF)."""
+    for slug, c in CITIES.items():
+        if c["budget"] != "ordinance":
+            continue
+        src = LGU_INTEL / c["intel"] / f"ab-{ORDINANCE_FY}.json"
+        blob = src.read_bytes()
+        book = json.loads(blob)
+        if book["psgc_code"] != c["psgc"] or book["fiscal_year"] != ORDINANCE_FY:
+            raise RuntimeError(f"{src} is not {c['name']} FY {ORDINANCE_FY}")
+        (RAW / slug).mkdir(parents=True, exist_ok=True)
+        (RAW / slug / f"ab-{ORDINANCE_FY}.json").write_bytes(blob)
+        manifest[f"{slug}/ab-{ORDINANCE_FY}.json"] = {"url": book.get("source_pdf_url") or book["source_url"], "page": book["source_url"],
+                                                      "parsed_by": f"stride-lgu-intel scripts/parse_budget_{c['intel']}.py", "sha256": sha(blob)}
+        print(f"ordinance {slug}: {len(book['sheets'])} sheets, stated {book['stated_total']:,.0f}")
 
 
 def now() -> str:
@@ -213,7 +252,8 @@ def main() -> None:
     RAW.mkdir(parents=True, exist_ok=True)
     mpath = RAW / "manifest.json"
     manifest = json.loads(mpath.read_text()) if mpath.exists() else {}
-    steps = {"deped": fetch_deped, "psgc": fetch_psgc, "geo": fetch_geo, "portal": fetch_portal, "edcom2": fetch_edcom2}
+    steps = {"deped": fetch_deped, "psgc": fetch_psgc, "geo": fetch_geo, "portal": fetch_portal, "edcom2": fetch_edcom2,
+             "ordinances": fetch_ordinances}
     for name in sys.argv[1:] or steps:
         steps[name](manifest)
     manifest["_retrieved"] = now()

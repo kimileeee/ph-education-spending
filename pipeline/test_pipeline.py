@@ -20,10 +20,16 @@ def main() -> None:
     brgy = pd.read_csv(DATA / "barangays.csv", dtype=str, keep_default_na=False)
 
     assert sch.school_id.str.fullmatch(r"\d{6}").all(), "school IDs are 6-digit strings"
-    assert brgy.psgc_code.str.fullmatch(r"05017240\d\d").all() and len(brgy) == 27, "Naga's 27 barangays, PSGC strings"
+    assert brgy.psgc_code.str.fullmatch(r"\d{10}").all(), "PSGC codes are 10-digit strings"
+    assert brgy.groupby("city").size().to_dict() == {"naga": 27, "zamboanga": 98, "cdo": 80}, "every barangay of each city"
+    for city, code in (("naga", "05017"), ("zamboanga", "09317"), ("cdo", "10305")):
+        assert brgy[brgy.city == city].psgc_code.str.startswith(code).all(), f"{city} barangays belong to {city}"
     unplaced = set(sch[sch.psgc_barangay_code == ""].school_id)
     assert unplaced <= set(gaps[gaps.kind == "barangay_unmatched"].record_id), "an unmatched school is listed, not dropped"
     assert set(bud.line_id) <= set(gaps[gaps.kind == "budget_line_no_place"].record_id) | set(bud[bud.place_level != "city"].line_id)
+    placed = bud[bud.place_level == "school"]
+    assert placed.school_ids.isin(sch.school_id).all(), "a row placed at a school names a real DepEd school"
+    assert (bud[bud.city != "naga"].machine_read == "True").all(), "ordinance rows are marked machine-read"
     pub = sch[sch.sector == "Public"]
     crla_missing = set(pub[pub.crla_2025_26 != "published"].school_id)
     assert crla_missing == set(gaps[gaps.kind == "crla_not_published"].record_id)
@@ -35,7 +41,7 @@ def main() -> None:
     assert (pub[pub.crla_2025_26 != "published"].crla_assessed == "").all(), "a school without CRLA stays empty, never 0"
 
     stats = json.loads((SITE / "api" / "stats.json").read_text())
-    assert stats["budget"]["AIP2027"]["sef_lines"] >= 1
+    assert stats["cities"]["naga"]["budget"]["AIP2027"]["sef_lines"] >= 1
     spec = json.loads((SITE / "openapi.json").read_text())
     for path in spec["paths"]:
         p = SITE / path.lstrip("/").replace("{school_id}", sch.school_id.iloc[0])

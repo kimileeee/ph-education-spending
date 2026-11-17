@@ -1,14 +1,14 @@
 {
  "profile": "tabular-data-package",
- "name": "ph-education-spending-naga",
- "title": "Naga City education and early-childhood spending next to school data (prototype)",
+ "name": "ph-education-spending",
+ "title": "City education and early-childhood spending next to school data: Naga, Zamboanga City, Cagayan de Oro (prototype)",
  "licenses": [
   {
    "name": "ODC-BY-1.0",
    "path": "https://opendatacommons.org/licenses/by/1-0/"
   }
  ],
- "created": "2026-11-17T14:30:50+00:00",
+ "created": "2026-11-17T14:54:02+00:00",
  "sources": [
   {
    "title": "Enrollment in SY 2025-2026 (school level)",
@@ -35,7 +35,7 @@
    "path": "https://www.deped.gov.ph/wp-content/uploads/School-Facilities-in-SY-2023-2024.zip"
   },
   {
-   "title": "Comprehensive Rapid Literacy Assessment (CRLA) 2025-2026, selected schools",
+   "title": "CRLA 2025-2026, selected schools",
    "path": "https://www.deped.gov.ph/wp-content/uploads/Comprehensive-Rapid-Literacy-Assessment-CRLA-2025-2026.zip"
   },
   {
@@ -47,12 +47,20 @@
    "path": "https://www.deped.gov.ph/wp-content/uploads/National-Achievement-Test-NAT-Grade-6-2023-2024.zip"
   },
   {
-   "title": "Annual Budget 2026 (Ord. No. 2025-131), public Browse page",
+   "title": "Naga: Annual Budget 2026 (Ord. No. 2025-131), public Browse page",
    "path": "https://budget.naga.gov.ph/annual/2026/browse"
   },
   {
-   "title": "Annual Investment Program 2027, public Browse page",
+   "title": "Naga: Annual Investment Program 2027, public Browse page",
    "path": "https://budget.naga.gov.ph/aip/2027/browse"
+  },
+  {
+   "title": "City of Zamboanga: Annual Budget 2026, appropriation ordinance (PDF, machine-read)",
+   "path": "https://zamboangacity.gov.ph/appropriation/"
+  },
+  {
+   "title": "City of Cagayan de Oro: Annual Budget 2026, appropriation ordinance (PDF, machine-read)",
+   "path": "https://www.cdeocitycouncil.com/_files/ugd/01f3e2_6771fa1cf8cd44879dfa8c43999e0aa2.pdf"
   },
   {
    "title": "Philippine Standard Geographic Code, 2026 (via bendlikeabamboo/barangay)",
@@ -67,7 +75,7 @@
    "path": "https://public.tableau.com/views/EDCOM-dashboard_17847969310080/Overview"
   },
   {
-   "title": "2025 Operation Timbang Plus report, City of Naga row, from the EDCOM 2 Early Childhood Dashboard",
+   "title": "2025 Operation Timbang Plus report, city rows, from the EDCOM 2 Early Childhood Dashboard",
    "path": "https://public.tableau.com/views/EDCOM-dashboard_17847969310080/Overview"
   },
   {
@@ -85,13 +93,18 @@
    "path": "budget_lines.csv",
    "format": "csv",
    "mediatype": "text/csv",
-   "description": "Naga City education, early-childhood, nutrition and child-welfare budget rows (AB 2026 enacted, AIP 2027), tagged by domain and fund",
+   "description": "Education, early-childhood, nutrition and child-welfare budget rows for Naga (AB 2026, AIP 2027), Zamboanga City and Cagayan de Oro (AB 2026, machine-read), tagged by domain, fund and place",
    "schema": {
     "fields": [
      {
       "name": "line_id",
       "type": "string",
-      "description": "The row's ID on budget.naga.gov.ph; its public page is source_url"
+      "description": "Row ID. Naga: the row's ID on budget.naga.gov.ph. Ordinance books: city, year, page and sequence"
+     },
+     {
+      "name": "city",
+      "type": "string",
+      "description": "This project's city slug: naga, zamboanga or cdo"
      },
      {
       "name": "cycle",
@@ -116,7 +129,7 @@
      {
       "name": "aip_reference_code",
       "type": "string",
-      "description": "The City's AIP reference code, as printed"
+      "description": "Naga: the City's AIP reference code; ordinance books: the account code if printed"
      },
      {
       "name": "office_code",
@@ -141,7 +154,7 @@
      {
       "name": "domain",
       "type": "string",
-      "description": "Tag from this project's rules (pipeline/build.py RULES); tag_rule names the rule"
+      "description": "Tag from this project's rules (pipeline/build.py RULES, SHEET_RULES, LINE_RULES); tag_rule names the rule"
      },
      {
       "name": "tag_rule",
@@ -151,7 +164,7 @@
      {
       "name": "fund_sources",
       "type": "string",
-      "description": "Funds the City's portal lists for the row (e.g. SEF, GF); empty if the row's page wasn't read"
+      "description": "Naga: funds the portal lists (e.g. SEF, GF), empty if the row's page wasn't read. Ordinance books: the fund printed on the sheet"
      },
      {
       "name": "thematic_tags",
@@ -176,7 +189,7 @@
      {
       "name": "total",
       "type": "number",
-      "description": "Row total as published, PHP"
+      "description": "Row total as published (or as machine-read), PHP"
      },
      {
       "name": "finish_line",
@@ -186,7 +199,7 @@
      {
       "name": "place_level",
       "type": "string",
-      "description": "Finest place the source states: 'city' means no school or barangay is named"
+      "description": "Finest place the source states: 'school' when the row names a school, 'city' when it names none"
      },
      {
       "name": "place_code",
@@ -196,12 +209,22 @@
      {
       "name": "school_ids",
       "type": "string",
+      "description": "DepEd school ID the row names, matched by school name (place_match says how)"
+     },
+     {
+      "name": "place_match",
+      "type": "string",
       "description": ""
      },
      {
       "name": "barangay_codes",
       "type": "string",
       "description": ""
+     },
+     {
+      "name": "page",
+      "type": "number",
+      "description": "Page of the ordinance PDF (ordinance books only)"
      },
      {
       "name": "source_id",
@@ -219,6 +242,11 @@
       "description": ""
      },
      {
+      "name": "machine_read",
+      "type": "boolean",
+      "description": "True when the figure was read by OCR from a scanned or printed PDF and hasn't been reviewed by a person"
+     },
+     {
       "name": "validation",
       "type": "string",
       "description": ""
@@ -232,9 +260,14 @@
    "path": "schools.csv",
    "format": "csv",
    "mediatype": "text/csv",
-   "description": "Every school in DepEd's Schools Division of Naga City, with enrollment, City-SEF-paid staff, LGU/SEF-funded ICT and facilities",
+   "description": "Every school in DepEd's Schools Divisions of Naga City, Zamboanga City and Cagayan de Oro City, with enrollment, City-SEF-paid staff, LGU/SEF-funded ICT, facilities and CRLA",
    "schema": {
     "fields": [
+     {
+      "name": "city",
+      "type": "string",
+      "description": "This project's city slug: naga, zamboanga or cdo"
+     },
      {
       "name": "school_id",
       "type": "string",
@@ -274,6 +307,11 @@
       "name": "psgc_barangay_name",
       "type": "string",
       "description": ""
+     },
+     {
+      "name": "barangay_match",
+      "type": "string",
+      "description": "How the DepEd barangay name was matched: name, rule (parenthetical or 'Barangay' dropped) or hand"
      },
      {
       "name": "offers_es",
@@ -413,9 +451,14 @@
    "path": "barangays.csv",
    "format": "csv",
    "mediatype": "text/csv",
-   "description": "Naga's 27 barangays (PSGC), public-school totals, and ECCD indicator slots (empty where not published)",
+   "description": "Every barangay of the three cities (PSGC), public-school totals, CRLA, and ECCD indicator slots",
    "schema": {
     "fields": [
+     {
+      "name": "city",
+      "type": "string",
+      "description": "This project's city slug: naga, zamboanga or cdo"
+     },
      {
       "name": "psgc_code",
       "type": "string",
@@ -515,9 +558,14 @@
    "path": "districts.csv",
    "format": "csv",
    "mediatype": "text/csv",
-   "description": "DepEd's four school districts in Naga, public-school totals",
+   "description": "DepEd's school districts in the three cities, public-school totals",
    "schema": {
     "fields": [
+     {
+      "name": "city",
+      "type": "string",
+      "description": "This project's city slug: naga, zamboanga or cdo"
+     },
      {
       "name": "school_district",
       "type": "string",
@@ -593,6 +641,10 @@
       "type": "number",
       "description": "crla_low_emerging / crla_assessed"
      }
+    ],
+    "primaryKey": [
+     "city",
+     "school_district"
     ]
    }
   },
@@ -604,6 +656,11 @@
    "description": "Every record that could not be joined or has no public source: listed, not dropped",
    "schema": {
     "fields": [
+     {
+      "name": "city",
+      "type": "string",
+      "description": "This project's city slug: naga, zamboanga or cdo"
+     },
      {
       "name": "kind",
       "type": "string",
@@ -637,9 +694,14 @@
    "path": "checks.csv",
    "format": "csv",
    "mediatype": "text/csv",
-   "description": "Reconciliation checks on the sources (totals add up, splits add up)",
+   "description": "Reconciliation checks on the sources (totals add up, splits add up, confirmed sheets)",
    "schema": {
     "fields": [
+     {
+      "name": "city",
+      "type": "string",
+      "description": "This project's city slug: naga, zamboanga or cdo"
+     },
      {
       "name": "check_id",
       "type": "string",

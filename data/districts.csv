@@ -1,5 +1,27 @@
-school_district,public_schools,learners_2025_26,learners_2017_18,classrooms_instructional_2023_24,learners_2023_24,buildings_major_repair_or_worse_2023_24,staff_city_sef_2023_24,staff_other_lgu_2023_24,ict_items_lgu_sef_2023_24,barangays,crla_schools,crla_assessed,crla_low_emerging,crla_low_emerging_share
-Naga East District,14,7948,6913,218,8226,10,3,9,94,6,11,2675,136,0.0508
-Naga North District,14,26946,28266,637,29198,86,17,8,75,10,5,2605,51,0.0196
-Naga South District,10,6733,6728,178,6949,53,4,4,59,5,8,2181,140,0.0642
-Naga West District,7,5549,6856,184,6042,33,4,2,78,5,6,2155,118,0.0548
+city,school_district,public_schools,learners_2025_26,learners_2017_18,classrooms_instructional_2023_24,learners_2023_24,buildings_major_repair_or_worse_2023_24,staff_city_sef_2023_24,staff_other_lgu_2023_24,ict_items_lgu_sef_2023_24,barangays,crla_schools,crla_assessed,crla_low_emerging,crla_low_emerging_share
+cdo,Cagayan de Oro City Central I District,2,6304,8375,156,6962,13,0,2,0,2,2,2467,21,0.0085
+cdo,Cagayan de Oro City East I District,11,16497,17395,410,17433,42,0,1,0,4,6,3811,285,0.0748
+cdo,Cagayan de Oro City East II District,13,18626,17614,442,18735,56,1,4,9,5,8,4458,406,0.0911
+cdo,Cagayan de Oro City North I District,7,6832,8409,243,7720,35,0,0,0,3,4,1927,137,0.0711
+cdo,Cagayan de Oro City North II District,8,9693,9324,253,10251,47,1,0,11,3,5,2515,354,0.1408
+cdo,Cagayan de Oro City South District,10,20715,19313,519,21378,61,0,4,20,4,6,4039,362,0.0896
+cdo,Cagayan de Oro City Southwest District I,17,10786,7983,262,9969,48,0,0,34,7,10,2287,221,0.0966
+cdo,Cagayan de Oro City Southwest District II,20,7691,5076,241,7288,70,0,1,27,5,14,1810,333,0.184
+cdo,Cagayan de Oro City West I District,8,15579,16515,399,16008,29,0,4,0,2,6,4887,426,0.0872
+cdo,Cagayan de Oro City West II District,19,25611,22580,651,26840,111,0,6,7,7,12,5917,372,0.0629
+naga,Naga East District,14,7948,6913,218,8226,10,3,9,94,6,11,2675,136,0.0508
+naga,Naga North District,14,26946,28266,637,29198,86,17,8,75,10,5,2605,51,0.0196
+naga,Naga South District,10,6733,6728,178,6949,53,4,4,59,5,8,2181,140,0.0642
+naga,Naga West District,7,5549,6856,184,6042,33,4,2,78,5,6,2155,118,0.0548
+zamboanga,Ayala,16,28907,24111,617,29550,51,8,2,34,7,11,7661,996,0.13
+zamboanga,Baliwasan,11,24028,23257,529,25218,29,8,3,26,6,7,4923,596,0.1211
+zamboanga,Curuan,27,10650,8230,335,11098,49,0,11,57,9,22,2913,365,0.1253
+zamboanga,Labuan,22,16956,14011,380,17298,37,4,7,79,7,18,4636,824,0.1777
+zamboanga,Manicahan,27,18193,15774,421,18529,63,1,13,47,9,22,5177,754,0.1456
+zamboanga,Mercedes,26,20369,16400,516,20397,51,1,5,41,12,22,4924,606,0.1231
+zamboanga,Putik,12,18834,15870,393,19462,56,0,4,36,9,11,5094,645,0.1266
+zamboanga,Sta. Maria,18,26463,25222,657,27888,47,16,3,127,6,12,6521,780,0.1196
+zamboanga,Talon-Talon,13,19870,16224,352,20195,30,0,19,18,7,9,6774,754,0.1113
+zamboanga,Tetuan,7,27302,24657,529,27982,33,1,3,26,6,5,5358,412,0.0769
+zamboanga,Vitali,38,13895,13422,430,14310,59,1,10,122,10,30,3645,517,0.1418
+zamboanga,Zamboanga Central District,5,9347,6565,318,9667,41,0,14,14,5,5,3821,499,0.1306

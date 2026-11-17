@@ -64,11 +64,12 @@ def write(stats: dict) -> None:
                                         "description": "Counts and totals the site quotes, computed at build time.", "parameters": [],
                                         "responses": {"200": {"description": "OK", "content": {"application/json": {
                                             "schema": {"$ref": "#/components/schemas/Stats"},
-                                            "example": {k: stats[k] for k in ("built_at", "schools", "learners_public_2025_26")}}}}}}}
+                                            "example": {"built_at": stats["built_at"], "cities": {k: {kk: v[kk] for kk in ("name", "schools", "learners_public_2025_26")}
+                                                                                    for k, v in stats["cities"].items()}}}}}}}}
     spec = {
         "openapi": "3.1.0",
-        "info": {"title": "Naga education and early-childhood spending (prototype)", "version": stats["built_at"][:10],
-                 "description": "Static JSON files: no key, no tracking, CORS open. Join schools on DepEd school ID and "
+        "info": {"title": "City education and early-childhood spending (prototype)", "version": stats["built_at"][:10],
+                 "description": "Static JSON files for Naga, Zamboanga City and Cagayan de Oro: no key, no tracking, CORS open. Every row has a city field. Join schools on DepEd school ID and "
                                 "places on 10-digit PSGC codes. Every row names its source_id; see /api/sources.json.",
                  "license": {"name": "ODC-BY-1.0", "url": "https://opendatacommons.org/licenses/by/1-0/"}},
         "servers": [{"url": "/"}],
