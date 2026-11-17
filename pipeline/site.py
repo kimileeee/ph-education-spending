@@ -19,8 +19,35 @@ TEMPLATES = Path(__file__).parent / "templates"
 PAGES = ["methodology.html", "proposal.html"]
 
 
+def pct(x, d=1) -> str:
+    return f"{float(x) * 100:.{d}f}%"
+
+
+def crla_values(s: dict) -> dict:
+    sch = pd.read_csv(DATA / "schools.csv", dtype={"school_id": str}, keep_default_na=False)
+    pub = sch[sch.sector == "Public"]
+    es_missing = pub[(pub.offers_es.astype(str) == "True") & (pub.crla_2025_26 != "published")].school_name.tolist()
+    got = pub[pub.crla_2025_26 == "published"].copy()
+    got["share"] = got.crla_low_emerging.astype(float) / got.crla_assessed.astype(float)
+    top = got.sort_values("share").iloc[-1]
+    d = pd.read_csv(DATA / "districts.csv").sort_values("crla_low_emerging_share")
+    c, o = s["crla"], s["opt_2025_city"]
+    return {
+        "crla_note": json.loads((DATA / "raw" / "edcom2" / "naga.json").read_text())["crla_source_note"].removeprefix("Source: "),
+        "crla_missing_es": " and ".join(es_missing) or "none",
+        "crla_low": n(c["low_emerging"]), "crla_assessed": n(c["assessed"]),
+        "crla_low_share": pct(c["low_emerging_share"]), "crla_struggling_share": pct(c["struggling_share"]),
+        "crla_dist_min": f"{pct(d.iloc[0].crla_low_emerging_share)} ({d.iloc[0].school_district.replace(' District', '')})",
+        "crla_dist_max": f"{pct(d.iloc[-1].crla_low_emerging_share)} ({d.iloc[-1].school_district.replace(' District', '')})",
+        "crla_school_max": f"{top.school_name} at {pct(top.share)} ({n(top.crla_low_emerging)} of {n(top.crla_assessed)})",
+        "opt_measured": n(o["children_measured"]), "opt_est": n(o["children_estimated"]), "opt_stsst": n(o["stunted_or_severely"]),
+        "opt_share": pct(o["stunted_or_severely_share"]), "opt_e2_st": n(o["edcom2_measure_stunted"]),
+        "opt_e2_n": n(o["edcom2_measure_children"]), "opt_e2_share": pct(o["edcom2_measure_stunted"] / o["edcom2_measure_children"]),
+    }
+
+
 def n(x) -> str:
-    return f"{int(x):,}"
+    return f"{int(float(x)):,}"
 
 
 def peso(x) -> str:
@@ -53,7 +80,8 @@ def values() -> dict[str, str]:
         "ict_items": n(s["ict_items_lgu_sef_2023_24"]), "schools_ict": n(s["schools_with_lgu_sef_ict"]),
         "public_in_2023": n(s["public_schools_in_2023_24_files"]),
         "schools_missing_2023": n(s["gaps"].get("school_not_in_2023_24", 0)),
-        "crla_public": n(s["public_schools_with_crla"]), "crla_rows": n(len(crla)),
+        "crla_public": n(s["public_schools_with_crla"]), "crla_rows": n(len(crla)), "public_es": n(s["public_elementary_schools"]),
+        **crla_values(s),
         "crla_regions": ", ".join(sorted(crla.region.unique())),
         "barangays": n(s["barangays"]), "barangays_with_school": n(s["barangays_with_public_school"]),
         "matched": n(s["schools_matched_to_psgc"]),

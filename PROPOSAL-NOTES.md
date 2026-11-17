@@ -15,19 +15,19 @@ Numbers as of 17 Nov 2026, from `data/stats.json`. Rerun the pipeline and they m
 
 - Schools Division of Naga City: **98 schools, 45 public** in 4 districts (East 14, North 14, South 10, West 7), **47,176 public-school learners** in SY 2025-26 (2,926 in kindergarten). All 98 matched to PSGC barangay codes (two DepEd spellings matched by hand); 19 of 27 barangays have a public school.
 - **Where SEF money shows up on the school side (SY 2023-24):** **28 school staff paid from the City SEF** at 9 schools (2 teachers; the rest learning support aides and administrative staff), 23 more paid from other LGU funds, and **306 ICT items** (mostly TVs and printers) at 37 schools bought with LGU or SEF money.
-- **Reading results:** DepEd's machine-ready CRLA 2025-26 file has 6,121 schools from CAR and Regions I, III, VIII and IX only. **0 of Naga's 45 public schools** have a CRLA row. Same for ELLNA and NAT.
+- **Reading results (CRLA, end of SY 2025-26, as of 10 May 2026, via the EDCOM 2 dashboard's public workbook):** 30 of Naga's 31 public elementary schools (the SPED Center is the one without). **445 of 9,616 learners (4.6%) read at the Low Emerging level**; 7.6% are struggling readers (Low + High Emerging). By district: North 2.0%, East 5.1%, West 5.5%, South 6.4%. Highest school: Jose Rizal ES, 11.4% (18 of 158). DepEd's own machine-ready CRLA file has no Naga school (it covers CAR and Regions I, III, VIII, IX).
 - Naga North has 26,946 of the 47,176 learners and 86 buildings needing major repair or worse (of 182 citywide).
 
-## ECCD
+## ECCD (EDCOM 2 Early Childhood Dashboard, public Tableau workbook, author allows downloads)
 
-- EDCOM 2's Early Childhood Dashboard (edcom2.gov.ph/eccddashboard) sits behind a bot check; no download or API found.
-- No public barangay-level OPT+ or CBMS (CDC) table found for Naga. The barangay table has the columns, empty, marked "not published".
+- **OPT+ 2025, City of Naga (city level only):** 17,736 children under five measured (83.2% of an estimated 21,325); **328 (1.8%) stunted or severely stunted** (228 stunted, 100 severely). On the dashboard's own measure (described by EDCOM 2 as ages 0 to 2): 79 of 6,535 (1.2%). Not published by barangay.
+- **Child development centres:** none of Naga's 27 barangays is on EDCOM 2's list of barangays without a CDC. No counts per barangay.
 
 ## Credit
 
-- The 40% → 4% fall in low emerging readers after the City School Board used Project Bukas to realign the SEF is **Naga's**, as the Evidence for Education Coalition reports it. The prototype doesn't reproduce it (the school-level CRLA isn't public).
+- The 40% → 4% fall in low emerging readers after the City School Board used Project Bukas to realign the SEF is **Naga's**, as the Evidence for Education Coalition reports it. The public end-of-SY 2025-26 figure (4.6%) is in line with the 4%; the 40% starting point can't be rebuilt from public data.
 
 ## One-liners for the form
 
-- Prototype sentence: *A working prototype puts Naga City's 2027 AIP and 2026 budget rows for education and early childhood next to DepEd's Project Bukas data for all 45 public schools in the Schools Division of Naga City, keyed by school ID and PSGC: [[link]] (code: https://github.com/kimileeee/ph-education-spending).*
-- Why it matters: *In Naga's 2027 AIP, ₱130 million of ₱278.7 million for education and early childhood sits in one SEF row that names no school, and none of the 47 rows I tagged names a school or barangay. Meanwhile DepEd's own files show 28 school staff paid from the City SEF, and none of Naga's public schools has CRLA results in DepEd's machine-ready files.*
+- Prototype sentence: *A working prototype puts Naga City's 2027 AIP and 2026 budget rows for education and early childhood next to DepEd's Project Bukas data and CRLA reading results for the 45 public schools in the Schools Division of Naga City, keyed by school ID and PSGC: [[link]] (code: https://github.com/kimileeee/ph-education-spending).*
+- Why it matters: *In Naga's 2027 AIP, ₱130 million of ₱278.7 million for education and early childhood sits in one SEF row that names no school, and none of the 47 rows I tagged names a school or barangay. The outcomes are public school by school (low emerging readers range from 2.0% to 6.4% by district, and up to 11.4% in one school), so the missing link is the spending side.*

@@ -1,28 +1,28 @@
-psgc_code,name,public_schools,private_schools,learners_public_2025_26,kinder_public_2025_26,staff_city_sef_2023_24,ict_items_lgu_sef_2023_24,school_district,stunting_0_59m_opt,stunting_status,child_development_centres,cdc_status,crla_low_emerging_share,crla_status
-0501724001,Abella,0,3,0,0,0,0,,,not published,,not published,,not published
-0501724002,Bagumbayan Norte,0,0,0,0,0,0,,,not published,,not published,,not published
-0501724003,Bagumbayan Sur,1,5,750,87,0,5,Naga North District,,not published,,not published,,not published
-0501724004,Balatas,3,4,1990,202,4,26,Naga South District,,not published,,not published,,not published
-0501724006,Calauag,1,0,1062,145,0,9,Naga North District,,not published,,not published,,not published
-0501724007,Cararayan,5,1,4650,306,0,19,Naga East District,,not published,,not published,,not published
-0501724008,Carolina,5,0,2487,147,0,49,Naga East District,,not published,,not published,,not published
-0501724009,Concepcion Grande,2,2,1167,159,0,8,Naga South District,,not published,,not published,,not published
-0501724010,Concepcion Pequeña,3,6,4517,229,7,12,Naga North District,,not published,,not published,,not published
-0501724011,Dayangdang,0,2,0,0,0,0,,,not published,,not published,,not published
-0501724012,Del Rosario,3,1,1188,107,0,9,Naga South District,,not published,,not published,,not published
-0501724013,Dinaga,0,0,0,0,0,0,,,not published,,not published,,not published
-0501724014,Igualdad Interior,0,0,0,0,0,0,,,not published,,not published,,not published
-0501724017,Lerma,0,1,0,0,0,0,,,not published,,not published,,not published
-0501724018,Liboton,0,3,0,0,0,0,,,not published,,not published,,not published
-0501724019,Mabolo,2,1,1139,120,1,25,Naga West District,,not published,,not published,,not published
-0501724020,Pacol,3,5,2427,178,1,21,Naga East District,,not published,,not published,,not published
-0501724023,Panicuason,1,1,480,62,0,0,Naga East District,,not published,,not published,,not published
-0501724024,Peñafrancia,4,6,14060,386,10,29,Naga North District,,not published,,not published,,not published
-0501724025,Sabang,2,1,3535,121,0,13,Naga North District,,not published,,not published,,not published
-0501724026,San Felipe,1,2,938,115,0,6,Naga North District,,not published,,not published,,not published
-0501724027,San Francisco,0,1,0,0,0,0,,,not published,,not published,,not published
-0501724028,San Isidro,2,1,1087,88,2,19,Naga East District,,not published,,not published,,not published
-0501724029,Santa Cruz,2,2,1681,123,2,24,Naga East District,,not published,,not published,,not published
-0501724030,Tabuco,1,0,1645,177,0,0,Naga West District,,not published,,not published,,not published
-0501724031,Tinago,2,1,1624,64,0,10,Naga North District,,not published,,not published,,not published
-0501724032,Triangulo,2,4,749,110,1,22,Naga West District,,not published,,not published,,not published
+psgc_code,name,public_schools,private_schools,learners_public_2025_26,kinder_public_2025_26,staff_city_sef_2023_24,ict_items_lgu_sef_2023_24,school_district,crla_schools,crla_assessed,crla_low_emerging,crla_low_emerging_share,crla_status,on_no_cdc_list,cdc_status,stunting_0_59m_opt,stunting_status
+0501724001,Abella,0,3,0,0,0,0,,0,0,0,,no public school with CRLA results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724002,Bagumbayan Norte,0,0,0,0,0,0,,0,0,0,,no public school with CRLA results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724003,Bagumbayan Sur,1,5,750,87,0,5,Naga North District,1,290,0,0.0,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724004,Balatas,3,4,1990,202,4,26,Naga South District,2,564,29,0.0514,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724006,Calauag,1,0,1062,145,0,9,Naga North District,1,411,17,0.0414,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724007,Cararayan,5,1,4650,306,0,19,Naga East District,3,1097,81,0.0738,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724008,Carolina,5,0,2487,147,0,49,Naga East District,4,479,24,0.0501,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724009,Concepcion Grande,2,2,1167,159,0,8,Naga South District,2,456,46,0.1009,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724010,Concepcion Pequeña,3,6,4517,229,7,12,Naga North District,1,716,54,0.0754,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724011,Dayangdang,0,2,0,0,0,0,,0,0,0,,no public school with CRLA results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724012,Del Rosario,3,1,1188,107,0,9,Naga South District,2,236,3,0.0127,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724013,Dinaga,0,0,0,0,0,0,,0,0,0,,no public school with CRLA results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724014,Igualdad Interior,0,0,0,0,0,0,,0,0,0,,no public school with CRLA results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724017,Lerma,0,1,0,0,0,0,,0,0,0,,no public school with CRLA results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724018,Liboton,0,3,0,0,0,0,,0,0,0,,no public school with CRLA results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724019,Mabolo,2,1,1139,120,1,25,Naga West District,1,382,26,0.0681,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724020,Pacol,3,5,2427,178,1,21,Naga East District,2,625,10,0.016,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724023,Panicuason,1,1,480,62,0,0,Naga East District,1,199,17,0.0854,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724024,Peñafrancia,4,6,14060,386,10,29,Naga North District,2,1512,19,0.0126,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724025,Sabang,2,1,3535,121,0,13,Naga North District,1,459,8,0.0174,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724026,San Felipe,1,2,938,115,0,6,Naga North District,1,392,15,0.0383,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724027,San Francisco,0,1,0,0,0,0,,0,0,0,,no public school with CRLA results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724028,San Isidro,2,1,1087,88,2,19,Naga East District,1,275,4,0.0145,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724029,Santa Cruz,2,2,1681,123,2,24,Naga East District,1,364,24,0.0659,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724030,Tabuco,1,0,1645,177,0,0,Naga West District,1,646,37,0.0573,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724031,Tinago,2,1,1624,64,0,10,Naga North District,1,209,8,0.0383,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)
+0501724032,Triangulo,2,4,749,110,1,22,Naga West District,2,304,23,0.0757,summed from school results,False,EDCOM 2 list of barangays without a CDC,,city level only (OPT+ 2025)

@@ -28,7 +28,11 @@ def main() -> None:
     crla_missing = set(pub[pub.crla_2025_26 != "published"].school_id)
     assert crla_missing == set(gaps[gaps.kind == "crla_not_published"].record_id)
     assert (chk.status == "match").all(), f"source totals don't add up: {chk[chk.status != 'match'].to_dict('records')}"
-    assert (brgy.stunting_status == "not published").all() and (brgy.stunting_0_59m_opt == "").all(), "no invented ECCD figures"
+    assert (brgy.stunting_0_59m_opt == "").all(), "stunting is published for the city only: no invented barangay figures"
+    got = pub[pub.crla_2025_26 == "published"]
+    bands = got[["crla_low_emerging", "crla_high_emerging", "crla_developing", "crla_transitioning", "crla_at_grade_level"]].astype(int).sum(axis=1)
+    assert (bands == got.crla_assessed.astype(int)).all(), "CRLA levels add up to learners assessed"
+    assert (pub[pub.crla_2025_26 != "published"].crla_assessed == "").all(), "a school without CRLA stays empty, never 0"
 
     stats = json.loads((SITE / "api" / "stats.json").read_text())
     assert stats["budget"]["AIP2027"]["sef_lines"] >= 1

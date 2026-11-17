@@ -4,7 +4,9 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 const fmt = (v, unit) => (unit === "PHP" ? `₱${Number(v).toLocaleString("en-PH", { maximumFractionDigits: 2 })}` : `${Number(v).toLocaleString("en-PH")} ${unit}`);
 const KINDS = {
   budget_line_no_place: "Budget row names no school or barangay",
-  crla_not_published: "Public school with no CRLA row",
+  crla_not_published: "Public school with no CRLA results",
+  crla_school_unmatched: "CRLA row for an unknown school ID",
+  barangay_not_in_edcom2: "Barangay missing from EDCOM 2's table",
   school_not_in_2023_24: "School missing from the 2023-24 files",
   sef_budget_not_published: "SEF budget not on the portal",
   eccd_indicator_not_published: "ECCD indicator not published by barangay",

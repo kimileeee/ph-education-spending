@@ -15,6 +15,7 @@ Always use absolute paths in Bash.
 ## Rules that are easy to break
 
 - **Public data only.** The Naga portal is read from its public pages (Browse + each row's `/budget/<id>` page). Its bulk open-data API is off by the City's choice: don't use it, and never use anything from the `naga-budget-portal` repo or its admin side. Kim's company builds that portal; this repo must stay separate from the contract.
+- **EDCOM 2's dashboard** is read from its public Tableau workbook on public.tableau.com (`fetch.py edcom2`), never through edcom2.gov.ph's bot check. The step stops if the author turns `allowDataAccess` off; keep it that way. Only Naga's rows are kept.
 - **Never invent a figure.** An indicator with no public source stays empty with a `*_status` of "not published". Never fill it with a guess or a sample.
 - **Never change a source's numbers.** Problems go to `checks.csv` / `gaps.csv`.
 - **Unmatched is listed, not dropped.** Every join failure is a row in `gaps.csv`; the test enforces it for schools, budget rows and CRLA.

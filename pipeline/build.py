@@ -56,7 +56,8 @@ CYCLE_DOCS = {
 }
 # DepEd spells two barangay names differently from PSA's PSGC. Matched by hand, listed on the checks page.
 BARANGAY_ALIASES = {"CONCEPCION PEQUENO": "Concepcion Pequeña", "SAN FRANCISCO (POB.)": "San Francisco"}
-NOT_PUBLISHED = "not published"  # status for an indicator with no public, machine-readable source for Naga
+NOT_PUBLISHED = "not published"
+E2: dict = {}  # EDCOM 2 dashboard's Naga slice (data/raw/edcom2/naga.json), loaded in main()  # status for an indicator with no public, machine-readable source for Naga
 
 
 def fold(s: str) -> str:
@@ -77,8 +78,7 @@ def fix_text(s):
 def read_deped(name: str) -> pd.DataFrame:
     df = pd.read_csv(RAW / "deped" / name, encoding="cp1252", dtype=str, keep_default_na=False, low_memory=False)
     for c in df.columns:
-        if df[c].dtype == object:
-            df[c] = df[c].map(fix_text)
+        df[c] = df[c].map(fix_text)  # every column is read as text
     return df
 
 
@@ -120,12 +120,14 @@ def sources(manifest: dict) -> pd.DataFrame:
          manifest["psgc/naga.json"]["url"], "2026", "used", manifest["psgc/naga.json"]["sha256"]),
         ("faeldon-geo", "Barangay boundaries, medium resolution (philippines-json-maps)", "faeldon/philippines-json-maps (MIT)",
          manifest["geo/naga-barangays.json"]["url"], "release v1.1.1", "used", manifest["geo/naga-barangays.json"]["sha256"]),
-        ("edcom2-eccd-dashboard", "EDCOM 2 Early Childhood Dashboard", "EDCOM 2 with AC Analytics",
-         "https://edcom2.gov.ph/eccddashboard/", "launched Aug 2026", "checked: behind a bot check, no download or API found", ""),
+        ("edcom2-crla", f"CRLA per school, from the EDCOM 2 Early Childhood Dashboard ({E2['crla_source_note']})", "EDCOM 2 (data: DepEd)",
+         E2["workbook"], "End of SY 2025-26, as of 10 May 2026", "used", manifest["edcom2/naga.json"]["sha256"]),
+        ("edcom2-opt-2025", "2025 Operation Timbang Plus report, City of Naga row, from the EDCOM 2 Early Childhood Dashboard", "EDCOM 2 (data: NNC OPT+)",
+         E2["workbook"], "2025", "used: city level only", manifest["edcom2/naga.json"]["sha256"]),
+        ("edcom2-no-cdc", "Barangays without a child development centre, from the EDCOM 2 Early Childhood Dashboard", "EDCOM 2 (source of the list not stated)",
+         E2["workbook"], f"workbook updated {E2['workbook_updated'][:10]}", "used: yes/no per barangay, no counts", manifest["edcom2/naga.json"]["sha256"]),
         ("nnc-opt-plus", "Operation Timbang Plus (OPT+) results by barangay", "National Nutrition Council",
          "https://www.nnc.gov.ph/", "annual", "checked: no barangay-level file for Naga found", ""),
-        ("cbms", "Community-Based Monitoring System", "Philippine Statistics Authority",
-         "https://psa.gov.ph/", "2024 round", "checked: no barangay-level child development centre table for Naga found", ""),
     ]
     return pd.DataFrame(rows, columns=["source_id", "title", "publisher", "url", "period", "status", "sha256"])
 
@@ -158,7 +160,8 @@ def schools(gaps: list, psgc: dict) -> pd.DataFrame:
     fac = read_deped("facilities_2023-24.csv").set_index("school_id")
     fac = fac[fac.index.isin(ids)]
 
-    crla = set(read_deped("crla_2025-26_selected.csv").school_id)
+    crla_deped = set(read_deped("crla_2025-26_selected.csv").school_id)
+    crla = {str(r["School ID"]): r for r in E2["crla"]}
 
     by_name = {fold(b["name"]): b for b in psgc["barangays"]}
     aliases = {k: next(b for b in psgc["barangays"] if b["name"] == v) for k, v in BARANGAY_ALIASES.items()}
@@ -194,16 +197,37 @@ def schools(gaps: list, psgc: dict) -> pd.DataFrame:
             "staff_other_lgu_2023_24": int(num(per.loc[[sid]], lgu).iloc[0]) if in23 else None,
             "ict_items_lgu_sef_2023_24": int(num(ict.loc[[sid]], [c for c in ict.columns if c.endswith("_lgu_sef")]).iloc[0]) if sid in ict.index else None,
             "crla_2025_26": "published" if sid in crla else NOT_PUBLISHED,
-            "source_ids": "deped-enrollment-2025-26 deped-personnel-2023-24 deped-ict-2023-24 deped-facilities-2023-24",
+            **crla_fields(crla.get(sid)),
+            "in_deped_crla_file": sid in crla_deped,
+            "source_ids": "deped-enrollment-2025-26 deped-personnel-2023-24 deped-ict-2023-24 deped-facilities-2023-24"
+                          + (" edcom2-crla" if sid in crla else ""),
         })
         if r.sector == "Public" and sid not in crla:
-            gaps.append(gap("crla_not_published", sid, f"{r.school_name}: no row in DepEd's machine-ready CRLA 2025-26 file "
-                            "(the file covers selected schools in CAR and Regions I, III, VIII and IX only)", "deped-crla-2025-26"))
+            why = ("CRLA tests Grades 1 to 3 and this school has no elementary grades" if r.offers_es != "Yes"
+                   else "the school offers elementary grades but has no CRLA row")
+            gaps.append(gap("crla_not_published", sid, f"{r.school_name}: not in the EDCOM 2 dashboard's CRLA data ({why})", "edcom2-crla",
+                            resolved=r.offers_es != "Yes"))
+    missing = set(crla) - set(e25.school_id)
+    for sid in sorted(missing):
+        gaps.append(gap("crla_school_unmatched", sid, f"{crla[sid]['School Name']}: CRLA row for a school ID not in DepEd's 2025-26 enrollment", "edcom2-crla"))
     df = pd.DataFrame(out)
+    ints = [c for c in df.columns if c.startswith(("learners_20", "classrooms_", "buildings_", "makeshift_", "staff_", "teachers_", "ict_", "crla_")) and c != "crla_2025_26"]
+    df[ints] = df[ints].astype("Int64")  # nullable: a school missing from a source stays empty, never 0
     df["learners_per_classroom_2023_24"] = (df.learners_2023_24 / df.classrooms_instructional_2023_24.where(df.classrooms_instructional_2023_24 > 0)).round(1)
     if df.school_id.duplicated().any():
         raise RuntimeError("duplicate school_id in DepEd's enrollment file")
     return df
+
+
+CRLA_BANDS = {"crla_low_emerging": "Total Low Emerging", "crla_high_emerging": "Total High Emerging",
+              "crla_developing": "Total Developing", "crla_transitioning": "Total Transitioning", "crla_at_grade_level": "Total At Grade Level"}
+
+
+def crla_fields(r) -> dict:
+    """One school's CRLA counts as published (Grades 1-3, end of SY 2025-26); None where the school has no row."""
+    if r is None:
+        return {"crla_assessed": None, **{k: None for k in CRLA_BANDS}}
+    return {"crla_assessed": int(r["Total Assessed"]), **{k: int(r[v]) for k, v in CRLA_BANDS.items()}}
 
 
 def gap(kind, record, detail, source_id, resolved=False) -> dict:
@@ -276,6 +300,7 @@ def check(cid, what, expected, actual, source_id, url, unit="PHP") -> dict:
 # ---------------------------------------------------------------- places
 def barangays(sch: pd.DataFrame, psgc: dict, gaps: list) -> pd.DataFrame:
     pub = sch[sch.sector == "Public"]
+    cdc = {str(r["psgc_code"]).zfill(10): r["cdc_barangay"] is not None for r in E2["barangays"]}
     out = []
     for b in psgc["barangays"]:
         s = pub[pub.psgc_barangay_code == b["psgc_id"]]
@@ -290,15 +315,23 @@ def barangays(sch: pd.DataFrame, psgc: dict, gaps: list) -> pd.DataFrame:
             "staff_city_sef_2023_24": int(s.staff_city_sef_2023_24.fillna(0).sum()),
             "ict_items_lgu_sef_2023_24": int(s.ict_items_lgu_sef_2023_24.fillna(0).sum()),
             "school_district": s.school_district.mode().iloc[0] if len(s) else "",
-            # ECCD indicators: the slots exist so the joins are ready; no public machine-readable source for Naga yet.
-            "stunting_0_59m_opt": None, "stunting_status": NOT_PUBLISHED,
-            "child_development_centres": None, "cdc_status": NOT_PUBLISHED,
-            "crla_low_emerging_share": None, "crla_status": NOT_PUBLISHED,
+            # CRLA: summed from the barangay's public schools (school-level results from the EDCOM 2 dashboard)
+            "crla_schools": int(s.crla_assessed.notna().sum()),
+            "crla_assessed": int(s.crla_assessed.fillna(0).sum()), "crla_low_emerging": int(s.crla_low_emerging.fillna(0).sum()),
+            "crla_low_emerging_share": round(s.crla_low_emerging.sum() / s.crla_assessed.sum(), 4) if s.crla_assessed.sum() else None,
+            "crla_status": "summed from school results" if s.crla_assessed.notna().any() else "no public school with CRLA results",
+            # Child development centres: EDCOM 2 lists barangays WITHOUT a CDC; no counts per barangay
+            "on_no_cdc_list": cdc.get(b["psgc_id"]),
+            "cdc_status": "EDCOM 2 list of barangays without a CDC" if b["psgc_id"] in cdc else "barangay not in EDCOM 2's table",
+            # Stunting: OPT+ 2025 is published for the city as a whole, not by barangay
+            "stunting_0_59m_opt": None, "stunting_status": "city level only (OPT+ 2025)",
         })
-    for ind, src in (("stunting_0_59m_opt", "nnc-opt-plus"), ("child_development_centres", "cbms"),
-                     ("crla_low_emerging_share", "deped-crla-2025-26")):
-        gaps.append(gap("eccd_indicator_not_published", ind, f"{ind}: no public, machine-readable barangay figure for Naga's "
-                        f"{len(out)} barangays; the column is empty in barangays.csv", src))
+        if b["psgc_id"] not in cdc:
+            gaps.append(gap("barangay_not_in_edcom2", b["psgc_id"], f"{b['name']}: not in the EDCOM 2 dashboard's barangay table", "edcom2-no-cdc"))
+    gaps.append(gap("eccd_indicator_not_published", "stunting_0_59m_opt", f"Stunting by barangay: OPT+ 2025 is published for the City of Naga "
+                    f"as a whole only, so the column is empty for all {len(out)} barangays", "edcom2-opt-2025"))
+    gaps.append(gap("eccd_indicator_not_published", "child_development_centres", "Number of child development centres per barangay: EDCOM 2 "
+                    "publishes only which barangays have none, so barangays.csv carries a yes/no flag", "edcom2-no-cdc"))
     return pd.DataFrame(out)
 
 
@@ -313,9 +346,11 @@ def districts(sch: pd.DataFrame) -> pd.DataFrame:
         "staff_city_sef_2023_24": g.staff_city_sef_2023_24.sum(), "staff_other_lgu_2023_24": g.staff_other_lgu_2023_24.sum(),
         "ict_items_lgu_sef_2023_24": g.ict_items_lgu_sef_2023_24.sum(),
         "barangays": g.psgc_barangay_code.nunique(),
-    }).reset_index().astype({c: int for c in ["public_schools", "learners_2025_26", "learners_2017_18", "classrooms_instructional_2023_24",
+        "crla_schools": g.crla_assessed.count(), "crla_assessed": g.crla_assessed.sum(), "crla_low_emerging": g.crla_low_emerging.sum(),
+    }).reset_index().assign(crla_low_emerging_share=lambda d: (d.crla_low_emerging / d.crla_assessed).round(4)).astype({c: int for c in ["public_schools", "learners_2025_26", "learners_2017_18", "classrooms_instructional_2023_24",
                                                "learners_2023_24", "buildings_major_repair_or_worse_2023_24", "staff_city_sef_2023_24",
-                                               "staff_other_lgu_2023_24", "ict_items_lgu_sef_2023_24", "barangays"]})
+                                               "staff_other_lgu_2023_24", "ict_items_lgu_sef_2023_24", "barangays",
+                                               "crla_schools", "crla_assessed", "crla_low_emerging"]})
 
 
 # ---------------------------------------------------------------- outputs
@@ -332,7 +367,12 @@ FIELD_DOCS = {
     "teachers_city_sef_2023_24": "Teachers paid from the City SEF, per DepEd's personnel file",
     "staff_other_lgu_2023_24": "School staff paid from other LGU funds, per DepEd's personnel file",
     "ict_items_lgu_sef_2023_24": "ICT equipment items DepEd lists as funded by the LGU or its SEF",
-    "crla_2025_26": "'published' if the school has a row in DepEd's machine-ready CRLA file, else 'not published'",
+    "crla_2025_26": "'published' if the school has CRLA results in the EDCOM 2 dashboard's data, else 'not published'",
+    "crla_assessed": "Learners in Grades 1-3 assessed, CRLA end of SY 2025-26 (EDCOM 2 dashboard, data from DepEd)",
+    "crla_low_emerging": "Learners reading at the Low Emerging level, same source",
+    "crla_low_emerging_share": "crla_low_emerging / crla_assessed",
+    "in_deped_crla_file": "Whether DepEd's own machine-ready CRLA file (selected schools) has this school",
+    "on_no_cdc_list": "True if the barangay is on EDCOM 2's list of barangays without a child development centre; empty if not in its table",
 }
 
 
@@ -361,12 +401,23 @@ def records(df: pd.DataFrame) -> list:
 def main() -> None:
     manifest = json.loads((RAW / "manifest.json").read_text())
     psgc = json.loads((RAW / "psgc" / "naga.json").read_text())
+    E2.update(json.loads((RAW / "edcom2" / "naga.json").read_text()))
     gaps, checks = [], []
     src = sources(manifest)
     sch = schools(gaps, psgc)
     bud = budget(gaps, checks)
     brgy = barangays(sch, psgc, gaps)
     dist = districts(sch)
+    # EDCOM 2 data: do the published parts add up?
+    ok = sum(sum(int(r[v]) for v in CRLA_BANDS.values()) == int(r["Total Assessed"]) for r in E2["crla"])
+    checks.append(check("crla-bands", "CRLA: each school's five reading levels add up to the learners it assessed",
+                        len(E2["crla"]), ok, "edcom2-crla", E2["workbook"], unit="schools"))
+    opt = E2["opt_2025_city"]
+    checks.append(check("opt-st-sst", "OPT+ 2025, City of Naga: stunted + severely stunted equals the combined count",
+                        opt["STSST_Number"], opt["ST_Number"] + opt["SST_Number"], "edcom2-opt-2025", E2["workbook"], unit="children"))
+    checks.append(check("opt-share", "OPT+ 2025, City of Naga: the stated stunting share equals the combined count over children measured "
+                        "(to the 3 decimals published)", round(opt["STSST_Percent"], 3), round(opt["STSST_Number"] / opt["Actual_children"], 3),
+                        "edcom2-opt-2025", E2["workbook"], unit="share"))
     g = pd.DataFrame(gaps)
     c = pd.DataFrame(checks)
 
@@ -392,6 +443,22 @@ def main() -> None:
         "ict_items_lgu_sef_2023_24": int(pub.ict_items_lgu_sef_2023_24.fillna(0).sum()),
         "schools_with_lgu_sef_ict": int((pub.ict_items_lgu_sef_2023_24 > 0).sum()),
         "public_schools_with_crla": int((pub.crla_2025_26 == "published").sum()),
+        "public_elementary_schools": int(pub.offers_es.sum()),
+        "public_schools_in_deped_crla_file": int(pub.in_deped_crla_file.sum()),
+        "crla": {"period": "End of SY 2025-26, as of 10 May 2026", "assessed": int(pub.crla_assessed.sum()),
+                 "low_emerging": int(pub.crla_low_emerging.sum()), "high_emerging": int(pub.crla_high_emerging.sum()),
+                 "at_grade_level": int(pub.crla_at_grade_level.sum()),
+                 "low_emerging_share": round(pub.crla_low_emerging.sum() / pub.crla_assessed.sum(), 4),
+                 "struggling_share": round((pub.crla_low_emerging.sum() + pub.crla_high_emerging.sum()) / pub.crla_assessed.sum(), 4),
+                 "school_low_emerging_share_max": round(float((pub.crla_low_emerging / pub.crla_assessed).max()), 4)},
+        "opt_2025_city": {"children_estimated": int(opt["Est_children"]), "children_measured": int(opt["Actual_children"]),
+                          "coverage": round(float(opt["stunting_coverage"]), 3),
+                          "stunted": int(opt["ST_Number"]), "severely_stunted": int(opt["SST_Number"]),
+                          "stunted_or_severely": int(opt["STSST_Number"]), "stunted_or_severely_share": round(float(opt["STSST_Percent"]), 3),
+                          "edcom2_measure_stunted": sum(int(opt[f"F{i}"]) for i in [*range(24, 30), *range(38, 44)]),
+                          "edcom2_measure_children": sum(int(opt[f"F{i}"]) for i in range(10, 16))},
+        "barangays_on_no_cdc_list": int(brgy.on_no_cdc_list.fillna(False).sum()),
+        "barangays_in_edcom2": int(brgy.on_no_cdc_list.notna().sum()),
         "barangays": len(brgy), "barangays_with_public_school": int((brgy.public_schools > 0).sum()),
         "schools_matched_to_psgc": int((sch.psgc_barangay_code != "").sum()),
         "budget": {cy: {"rows_on_portal": json.loads((RAW / "naga" / f"{cy}.json").read_text())["items"].__len__(),

@@ -6,6 +6,7 @@ const int = (v) => (v == null ? "–" : Number(v).toLocaleString("en-PH"));
 const peso = (v) => `₱${Number(v).toLocaleString("en-PH", { maximumFractionDigits: 0 })}`;
 const pesoM = (v) => `₱${(v / 1e6).toLocaleString("en-PH", { maximumFractionDigits: 1 })}M`;
 const NP = `<span class="np">not published</span>`;
+const pct = (v, d = 1) => (v == null ? "–" : `${(v * 100).toFixed(d)}%`);
 const DEFAULTS = { cycle: "AIP2027", scope: "edu", tab: "districts", district: "", metric: "learners", bgy: "", all: "" };
 
 let D = {};
@@ -43,7 +44,8 @@ function tiles() {
     ["2026 enacted budget: same offices", pesoM(b.education_ecd_total), `${b.education_ecd_lines} rows; the SEF's own budget isn't on the portal`],
     ["Public schools", int(s.schools.public), `${int(s.learners_public_2025_26)} learners, SY 2025-26, in ${s.schools.districts} districts`],
     ["Staff paid from the City SEF", int(s.staff_city_sef_2023_24), `at ${s.schools_with_city_sef_staff} schools (${s.teachers_city_sef_2023_24} of them teachers), SY 2023-24`],
-    ["Reading results (CRLA)", `${s.public_schools_with_crla} of ${s.schools.public}`, "public schools in DepEd's machine-ready CRLA file"],
+    ["Low emerging readers (CRLA)", pct(s.crla.low_emerging_share), `${int(s.crla.low_emerging)} of ${int(s.crla.assessed)} learners in Grades 1-3, end of SY 2025-26, at ${s.public_schools_with_crla} of ${s.public_elementary_schools} public elementary schools`],
+    ["Stunting, under 5 (OPT+ 2025)", pct(s.opt_2025_city.stunted_or_severely_share, 1), `${int(s.opt_2025_city.stunted_or_severely)} of ${int(s.opt_2025_city.children_measured)} children measured, city-wide only; not published by barangay`],
   ];
   $("tiles").innerHTML = t.map(([k, v, sub]) => `<div class="tile"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="s">${esc(sub)}</div></div>`).join("");
 }
@@ -87,12 +89,12 @@ function districts() {
   const ratio = (r) => (r.classrooms_instructional_2023_24 ? (r.learners_2023_24 / r.classrooms_instructional_2023_24).toFixed(1) : "–");
   $("p-districts").innerHTML = `<p class="note">DepEd's four school districts in Naga, public schools only. Pick one to see its schools.</p>
     <div class="tablewrap" style="max-height:none"><table><thead><tr><th class="l">District</th><th>Schools</th><th>Learners 2025-26</th><th>Learners 2017-18</th>
-    <th>Learners per classroom 2023-24</th><th>Buildings needing major repair</th><th>Staff paid from City SEF</th><th>Other LGU-paid staff</th><th>ICT items from LGU/SEF</th><th class="l">Reading (CRLA)</th></tr></thead>
+    <th>Learners per classroom 2023-24</th><th>Buildings needing major repair</th><th>Staff paid from City SEF</th><th>Other LGU-paid staff</th><th>ICT items from LGU/SEF</th><th>Low emerging readers (CRLA)</th></tr></thead>
     <tbody>${rows.map((r) => `<tr><td class="l"><button class="link" data-d="${esc(r.school_district)}">${esc(r.school_district)}</button></td>
       <td>${int(r.public_schools)}</td><td>${int(r.learners_2025_26)}</td><td>${int(r.learners_2017_18)}</td><td>${ratio(r)}</td>
       <td>${int(r.buildings_major_repair_or_worse_2023_24)}</td><td>${int(r.staff_city_sef_2023_24)}</td><td>${int(r.staff_other_lgu_2023_24)}</td>
-      <td>${int(r.ict_items_lgu_sef_2023_24)}</td><td class="l">${NP}</td></tr>`).join("")}</tbody></table></div>
-    <p class="note">Learners 2017-18 counts only schools that existed then under the same ID. SY 2023-24 figures are the latest DepEd publishes for staff, ICT and facilities.</p>`;
+      <td>${int(r.ict_items_lgu_sef_2023_24)}</td><td>${pct(r.crla_low_emerging_share)} <span class="note">of ${int(r.crla_assessed)}</span></td></tr>`).join("")}</tbody></table></div>
+    <p class="note">Learners 2017-18 counts only schools that existed then under the same ID. SY 2023-24 figures are the latest DepEd publishes for staff, ICT and facilities. CRLA is end of SY 2025-26 (Grades 1-3), from the EDCOM 2 dashboard's data.</p>`;
   $("p-districts").onclick = (e) => e.target.dataset.d && go({ tab: "schools", district: e.target.dataset.d });
 }
 
@@ -105,12 +107,12 @@ function schools() {
       <label>District <select id="dsel"><option value="">All districts</option>${dists.map((d) => `<option${d === state.district ? " selected" : ""}>${esc(d)}</option>`).join("")}</select></label>
       <label class="check"><input type="checkbox" id="allsec"${state.all ? " checked" : ""}> Include private schools and the state college</label></div>
     <p class="note">${list.length} schools. A dash means the school isn't in DepEd's SY 2023-24 files (new school or new ID); those are listed on the <a href="checks.html#gaps">checks page</a>.</p>
-    <div class="tablewrap"><table><thead><tr><th class="l">School</th><th class="l">Barangay (PSGC)</th><th>Learners 2025-26</th><th>Per classroom</th><th>Buildings needing major repair</th><th>City SEF staff</th><th>LGU/SEF ICT items</th><th class="l">CRLA</th></tr></thead>
+    <div class="tablewrap"><table><thead><tr><th class="l">School</th><th class="l">Barangay (PSGC)</th><th>Learners 2025-26</th><th>Per classroom</th><th>Buildings needing major repair</th><th>City SEF staff</th><th>LGU/SEF ICT items</th><th>Low emerging (CRLA)</th></tr></thead>
     <tbody>${list.map((s) => `<tr><td class="l">${esc(s.school_name)}<br><code class="note">${esc(s.school_id)}</code>${s.sector !== "Public" ? `<span class="tag">${esc(s.sector)}</span>` : ""}</td>
       <td class="l">${esc(s.psgc_barangay_name)}<br><code class="note">${esc(s.psgc_barangay_code)}</code></td>
       <td>${int(s.learners_2025_26)}</td><td>${s.learners_per_classroom_2023_24 ?? "–"}</td><td>${int(s.buildings_major_repair_or_worse_2023_24)}</td>
       <td>${int(s.staff_city_sef_2023_24)}</td><td>${int(s.ict_items_lgu_sef_2023_24)}</td>
-      <td class="l">${s.crla_2025_26 === "published" ? "published" : NP}</td></tr>`).join("")}</tbody></table></div>`;
+      <td>${s.crla_assessed == null ? (s.offers_es ? NP : `<span class="np">no Grades 1-3</span>`) : `${pct(s.crla_low_emerging / s.crla_assessed)} <span class="note">of ${int(s.crla_assessed)}</span>`}</td></tr>`).join("")}</tbody></table></div>`;
   $("dsel").onchange = (e) => go({ district: e.target.value });
   $("allsec").onchange = (e) => go({ all: e.target.checked ? "1" : "" });
 }
@@ -120,9 +122,9 @@ const METRICS = {
   learners: ["Public-school learners, 2025-26", (b) => b.learners_public_2025_26, "DepEd enrollment"],
   sef: ["Staff paid from the City SEF, 2023-24", (b) => b.staff_city_sef_2023_24, "DepEd personnel file"],
   ict: ["ICT items from LGU/SEF, 2023-24", (b) => b.ict_items_lgu_sef_2023_24, "DepEd ICT file"],
-  stunting: ["Stunting, children under 5 (OPT+)", (b) => b.stunting_0_59m_opt, "not published by barangay"],
-  cdc: ["Child development centres (CBMS)", (b) => b.child_development_centres, "not published by barangay"],
-  crla: ["Low emerging readers (CRLA)", (b) => b.crla_low_emerging_share, "not published for Naga"],
+  crla: ["Low emerging readers (CRLA), end of SY 2025-26", (b) => b.crla_low_emerging_share, "EDCOM 2 dashboard (DepEd CRLA), summed over the barangay's public schools", pct],
+  stunting: ["Stunting, children under 5 (OPT+)", (b) => b.stunting_0_59m_opt, "OPT+ 2025 is published for the whole city only (1.8%), not by barangay"],
+  cdc: ["Barangays without a child development centre", (b) => (b.on_no_cdc_list == null ? null : b.on_no_cdc_list ? 1 : 0), "EDCOM 2's list. None of Naga's 27 barangays is on it, so every barangay is pale"],
 };
 
 function project(geo) {
@@ -137,10 +139,10 @@ function project(geo) {
 }
 
 function map() {
-  const [label, get, src] = METRICS[state.metric];
+  const [label, get, src, fmt = int] = METRICS[state.metric];
   const by = Object.fromEntries(D.barangays.map((b) => [b.psgc_code, b]));
   const vals = D.barangays.map(get).filter((v) => v != null);
-  const max = Math.max(...vals, 1);
+  const max = Math.max(0, ...vals) || 1; // shares and counts both scale to their own maximum
   const color = (v) => (v == null ? "url(#np)" : v === 0 ? "var(--none)" : `var(--seq-${Math.min(5, 1 + Math.floor((v / max) * 4.999))})`);
   const { W, H, path } = project(D.geo);
   const sel = by[state.bgy];
@@ -148,9 +150,9 @@ function map() {
     <div class="mapgrid"><div class="map svgmap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Map of Naga's 27 barangays: ${esc(label)}">
       <defs><pattern id="np" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="var(--none)"/><rect width="3" height="7" fill="var(--nodata)"/></pattern></defs>
       ${D.geo.features.map((f) => { const b = by[f.properties.psgc_code]; const v = b ? get(b) : null;
-        return `<path class="b${state.bgy === f.properties.psgc_code ? " sel" : ""}" d="${path(f.geometry)}" fill="${color(v)}" data-b="${f.properties.psgc_code}"><title>${esc(f.properties.name)}: ${v == null ? "not published" : int(v)}</title></path>`; }).join("")}
+        return `<path class="b${state.bgy === f.properties.psgc_code ? " sel" : ""}" d="${path(f.geometry)}" fill="${color(v)}" data-b="${f.properties.psgc_code}"><title>${esc(f.properties.name)}: ${v == null ? "not published" : fmt(v)}</title></path>`; }).join("")}
     </svg></div>
-    <div><p class="label">${esc(label)}</p><p class="note">Source: ${esc(src)}. ${vals.length ? `Darkest = ${int(max)}. Pale = none.` : "No barangay has a public figure yet, so every barangay is hatched."}</p>
+    <div><p class="label">${esc(label)}</p><p class="note">Source: ${esc(src)}. ${vals.length ? `Darkest = ${fmt(max)}. Pale = none.` : "No barangay has a public figure, so every barangay is hatched."}</p>
       <div class="keys"><span><i class="box" style="background:var(--seq-4)"></i>more</span><span><i class="box" style="background:var(--seq-1)"></i>fewer</span>
       <span><i class="box" style="background:var(--none)"></i>none</span><span><i class="box hatch"></i>not published</span></div>
       <div class="placecard" ${sel ? "" : "hidden"} style="margin-top:16px">${sel ? place(sel) : ""}</div>
@@ -166,8 +168,9 @@ function place(b) {
       <tr><td class="l">Public schools</td><td>${int(b.public_schools)} (${int(b.private_schools)} private)</td></tr>
       <tr><td class="l">Learners 2025-26</td><td>${int(b.learners_public_2025_26)}</td></tr>
       <tr><td class="l">City SEF staff 2023-24</td><td>${int(b.staff_city_sef_2023_24)}</td></tr>
-      <tr><td class="l">Stunting (OPT+)</td><td>${NP}</td></tr>
-      <tr><td class="l">Child development centres</td><td>${NP}</td></tr>
+      <tr><td class="l">Low emerging readers (CRLA)</td><td>${b.crla_assessed ? `${pct(b.crla_low_emerging_share)} of ${int(b.crla_assessed)}` : "no school with results"}</td></tr>
+      <tr><td class="l">Stunting (OPT+)</td><td><span class="np">city level only</span></td></tr>
+      <tr><td class="l">On EDCOM 2's no-CDC list</td><td>${b.on_no_cdc_list == null ? NP : b.on_no_cdc_list ? "yes" : "no"}</td></tr>
       <tr><td class="l">City budget rows naming it</td><td>0</td></tr></tbody></table>
     ${sch.length ? `<ul class="plain" style="margin-top:8px">${sch.map((s) => `<li>${esc(s.school_name)} <span class="note">(${int(s.learners_2025_26)})</span></li>`).join("")}</ul>` : ""}`;
 }

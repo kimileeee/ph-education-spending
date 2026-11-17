@@ -128,17 +128,24 @@
            "offers_shs": false,
            "learners_2025_26": 638,
            "kinder_2025_26": 73,
-           "learners_2023_24": 688.0,
-           "learners_2017_18": 871.0,
-           "classrooms_instructional_2023_24": 23.0,
-           "buildings_major_repair_or_worse_2023_24": 0.0,
-           "makeshift_rooms_2023_24": 0.0,
-           "staff_city_sef_2023_24": 0.0,
-           "teachers_city_sef_2023_24": 0.0,
-           "staff_other_lgu_2023_24": 0.0,
-           "ict_items_lgu_sef_2023_24": 10.0,
-           "crla_2025_26": "not published",
-           "source_ids": "deped-enrollment-2025-26 deped-personnel-2023-24 deped-ict-2023-24 deped-facilities-2023-24",
+           "learners_2023_24": 688,
+           "learners_2017_18": 871,
+           "classrooms_instructional_2023_24": 23,
+           "buildings_major_repair_or_worse_2023_24": 0,
+           "makeshift_rooms_2023_24": 0,
+           "staff_city_sef_2023_24": 0,
+           "teachers_city_sef_2023_24": 0,
+           "staff_other_lgu_2023_24": 0,
+           "ict_items_lgu_sef_2023_24": 10,
+           "crla_2025_26": "published",
+           "crla_assessed": 242,
+           "crla_low_emerging": 10,
+           "crla_high_emerging": 0,
+           "crla_developing": 3,
+           "crla_transitioning": 0,
+           "crla_at_grade_level": 229,
+           "in_deped_crla_file": false,
+           "source_ids": "deped-enrollment-2025-26 deped-personnel-2023-24 deped-ict-2023-24 deped-facilities-2023-24 edcom2-crla",
            "learners_per_classroom_2023_24": 29.9
           },
           {
@@ -155,17 +162,24 @@
            "offers_shs": false,
            "learners_2025_26": 622,
            "kinder_2025_26": 69,
-           "learners_2023_24": 690.0,
-           "learners_2017_18": 744.0,
-           "classrooms_instructional_2023_24": 20.0,
-           "buildings_major_repair_or_worse_2023_24": 0.0,
-           "makeshift_rooms_2023_24": 0.0,
-           "staff_city_sef_2023_24": 0.0,
-           "teachers_city_sef_2023_24": 0.0,
-           "staff_other_lgu_2023_24": 3.0,
-           "ict_items_lgu_sef_2023_24": 5.0,
-           "crla_2025_26": "not published",
-           "source_ids": "deped-enrollment-2025-26 deped-personnel-2023-24 deped-ict-2023-24 deped-facilities-2023-24",
+           "learners_2023_24": 690,
+           "learners_2017_18": 744,
+           "classrooms_instructional_2023_24": 20,
+           "buildings_major_repair_or_worse_2023_24": 0,
+           "makeshift_rooms_2023_24": 0,
+           "staff_city_sef_2023_24": 0,
+           "teachers_city_sef_2023_24": 0,
+           "staff_other_lgu_2023_24": 3,
+           "ict_items_lgu_sef_2023_24": 5,
+           "crla_2025_26": "published",
+           "crla_assessed": 251,
+           "crla_low_emerging": 0,
+           "crla_high_emerging": 0,
+           "crla_developing": 29,
+           "crla_transitioning": 43,
+           "crla_at_grade_level": 179,
+           "in_deped_crla_file": false,
+           "source_ids": "deped-enrollment-2025-26 deped-personnel-2023-24 deped-ict-2023-24 deped-facilities-2023-24 edcom2-crla",
            "learners_per_classroom_2023_24": 34.5
           }
          ]
@@ -216,17 +230,24 @@
          "offers_shs": false,
          "learners_2025_26": 1062,
          "kinder_2025_26": 145,
-         "learners_2023_24": 1145.0,
-         "learners_2017_18": 1384.0,
-         "classrooms_instructional_2023_24": 35.0,
-         "buildings_major_repair_or_worse_2023_24": 0.0,
-         "makeshift_rooms_2023_24": 0.0,
-         "staff_city_sef_2023_24": 0.0,
-         "teachers_city_sef_2023_24": 0.0,
-         "staff_other_lgu_2023_24": 0.0,
-         "ict_items_lgu_sef_2023_24": 9.0,
-         "crla_2025_26": "not published",
-         "source_ids": "deped-enrollment-2025-26 deped-personnel-2023-24 deped-ict-2023-24 deped-facilities-2023-24",
+         "learners_2023_24": 1145,
+         "learners_2017_18": 1384,
+         "classrooms_instructional_2023_24": 35,
+         "buildings_major_repair_or_worse_2023_24": 0,
+         "makeshift_rooms_2023_24": 0,
+         "staff_city_sef_2023_24": 0,
+         "teachers_city_sef_2023_24": 0,
+         "staff_other_lgu_2023_24": 0,
+         "ict_items_lgu_sef_2023_24": 9,
+         "crla_2025_26": "published",
+         "crla_assessed": 411,
+         "crla_low_emerging": 17,
+         "crla_high_emerging": 8,
+         "crla_developing": 32,
+         "crla_transitioning": 161,
+         "crla_at_grade_level": 193,
+         "in_deped_crla_file": false,
+         "source_ids": "deped-enrollment-2025-26 deped-personnel-2023-24 deped-ict-2023-24 deped-facilities-2023-24 edcom2-crla",
          "learners_per_classroom_2023_24": 32.7
         }
        }
@@ -265,7 +286,11 @@
            "staff_city_sef_2023_24": 3,
            "staff_other_lgu_2023_24": 9,
            "ict_items_lgu_sef_2023_24": 94,
-           "barangays": 6
+           "barangays": 6,
+           "crla_schools": 11,
+           "crla_assessed": 2675,
+           "crla_low_emerging": 136,
+           "crla_low_emerging_share": 0.0508
           },
           {
            "school_district": "Naga North District",
@@ -278,7 +303,11 @@
            "staff_city_sef_2023_24": 17,
            "staff_other_lgu_2023_24": 8,
            "ict_items_lgu_sef_2023_24": 75,
-           "barangays": 10
+           "barangays": 10,
+           "crla_schools": 5,
+           "crla_assessed": 2605,
+           "crla_low_emerging": 51,
+           "crla_low_emerging_share": 0.0196
           }
          ]
         }
@@ -314,12 +343,15 @@
            "staff_city_sef_2023_24": 0,
            "ict_items_lgu_sef_2023_24": 0,
            "school_district": "",
-           "stunting_0_59m_opt": null,
-           "stunting_status": "not published",
-           "child_development_centres": null,
-           "cdc_status": "not published",
+           "crla_schools": 0,
+           "crla_assessed": 0,
+           "crla_low_emerging": 0,
            "crla_low_emerging_share": null,
-           "crla_status": "not published"
+           "crla_status": "no public school with CRLA results",
+           "on_no_cdc_list": false,
+           "cdc_status": "EDCOM 2 list of barangays without a CDC",
+           "stunting_0_59m_opt": null,
+           "stunting_status": "city level only (OPT+ 2025)"
           },
           {
            "psgc_code": "0501724002",
@@ -331,12 +363,15 @@
            "staff_city_sef_2023_24": 0,
            "ict_items_lgu_sef_2023_24": 0,
            "school_district": "",
-           "stunting_0_59m_opt": null,
-           "stunting_status": "not published",
-           "child_development_centres": null,
-           "cdc_status": "not published",
+           "crla_schools": 0,
+           "crla_assessed": 0,
+           "crla_low_emerging": 0,
            "crla_low_emerging_share": null,
-           "crla_status": "not published"
+           "crla_status": "no public school with CRLA results",
+           "on_no_cdc_list": false,
+           "cdc_status": "EDCOM 2 list of barangays without a CDC",
+           "stunting_0_59m_opt": null,
+           "stunting_status": "city level only (OPT+ 2025)"
           }
          ]
         }
@@ -363,18 +398,18 @@
         "example": {
          "gaps": [
           {
-           "kind": "crla_not_published",
-           "record_id": "114498",
-           "detail": "Carolina Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",
-           "source_id": "deped-crla-2025-26",
+           "kind": "school_not_in_2023_24",
+           "record_id": "137377",
+           "detail": "SALUNGUIGUI ELEMENTARY SCHOOL (Public) is in DepEd's 2025-26 enrollment but not in the 2023-24 personnel, ICT and facilities files (new school or new ID)",
+           "source_id": "deped-personnel-2023-24",
            "resolved": false
           },
           {
            "kind": "crla_not_published",
-           "record_id": "114502",
-           "detail": "Pacol Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",
-           "source_id": "deped-crla-2025-26",
-           "resolved": false
+           "record_id": "305875",
+           "detail": "Sta. Cruz National High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades)",
+           "source_id": "edcom2-crla",
+           "resolved": true
           }
          ]
         }
@@ -485,7 +520,7 @@
          "$ref": "#/components/schemas/Stats"
         },
         "example": {
-         "built_at": "2026-11-17T08:31:01+00:00",
+         "built_at": "2026-11-17T14:30:50+00:00",
          "schools": {
           "all": 98,
           "public": 45,
@@ -668,65 +703,107 @@
      },
      "learners_2023_24": {
       "type": [
-       "number",
+       "integer",
        "null"
       ]
      },
      "learners_2017_18": {
       "type": [
-       "number",
+       "integer",
        "null"
       ]
      },
      "classrooms_instructional_2023_24": {
       "type": [
-       "number",
+       "integer",
        "null"
       ]
      },
      "buildings_major_repair_or_worse_2023_24": {
       "type": [
-       "number",
+       "integer",
        "null"
       ]
      },
      "makeshift_rooms_2023_24": {
       "type": [
-       "number",
+       "integer",
        "null"
       ]
      },
      "staff_city_sef_2023_24": {
       "type": [
-       "number",
+       "integer",
        "null"
       ],
       "description": "School staff (teachers and non-teaching) paid from the City SEF, per DepEd's personnel file"
      },
      "teachers_city_sef_2023_24": {
       "type": [
-       "number",
+       "integer",
        "null"
       ],
       "description": "Teachers paid from the City SEF, per DepEd's personnel file"
      },
      "staff_other_lgu_2023_24": {
       "type": [
-       "number",
+       "integer",
        "null"
       ],
       "description": "School staff paid from other LGU funds, per DepEd's personnel file"
      },
      "ict_items_lgu_sef_2023_24": {
       "type": [
-       "number",
+       "integer",
        "null"
       ],
       "description": "ICT equipment items DepEd lists as funded by the LGU or its SEF"
      },
      "crla_2025_26": {
       "type": "string",
-      "description": "'published' if the school has a row in DepEd's machine-ready CRLA file, else 'not published'"
+      "description": "'published' if the school has CRLA results in the EDCOM 2 dashboard's data, else 'not published'"
+     },
+     "crla_assessed": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Learners in Grades 1-3 assessed, CRLA end of SY 2025-26 (EDCOM 2 dashboard, data from DepEd)"
+     },
+     "crla_low_emerging": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Learners reading at the Low Emerging level, same source"
+     },
+     "crla_high_emerging": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "crla_developing": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "crla_transitioning": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "crla_at_grade_level": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "in_deped_crla_file": {
+      "type": "boolean",
+      "description": "Whether DepEd's own machine-ready CRLA file (selected schools) has this school"
      },
      "source_ids": {
       "type": "string"
@@ -791,22 +868,47 @@
      "school_district": {
       "type": "string"
      },
-     "stunting_0_59m_opt": {
+     "crla_schools": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "crla_assessed": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Learners in Grades 1-3 assessed, CRLA end of SY 2025-26 (EDCOM 2 dashboard, data from DepEd)"
+     },
+     "crla_low_emerging": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Learners reading at the Low Emerging level, same source"
+     },
+     "crla_low_emerging_share": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": "crla_low_emerging / crla_assessed"
+     },
+     "crla_status": {
       "type": "string"
      },
-     "stunting_status": {
-      "type": "string"
-     },
-     "child_development_centres": {
-      "type": "string"
+     "on_no_cdc_list": {
+      "type": "boolean",
+      "description": "True if the barangay is on EDCOM 2's list of barangays without a child development centre; empty if not in its table"
      },
      "cdc_status": {
       "type": "string"
      },
-     "crla_low_emerging_share": {
+     "stunting_0_59m_opt": {
       "type": "string"
      },
-     "crla_status": {
+     "stunting_status": {
       "type": "string"
      }
     }
@@ -880,6 +982,33 @@
        "integer",
        "null"
       ]
+     },
+     "crla_schools": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "crla_assessed": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Learners in Grades 1-3 assessed, CRLA end of SY 2025-26 (EDCOM 2 dashboard, data from DepEd)"
+     },
+     "crla_low_emerging": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Learners reading at the Low Emerging level, same source"
+     },
+     "crla_low_emerging_share": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": "crla_low_emerging / crla_assessed"
      }
     }
    },

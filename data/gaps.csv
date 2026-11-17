@@ -1,39 +1,23 @@
 kind,record_id,detail,source_id,resolved
-crla_not_published,114498,"Carolina Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114502,"Pacol Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114503,"Panicuason Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114507,"Don Manuel I. Abella Central School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114510,"San Isidro Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,137172,"Yabu Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
 school_not_in_2023_24,137377,"SALUNGUIGUI ELEMENTARY SCHOOL (Public) is in DepEd's 2025-26 enrollment but not in the 2023-24 personnel, ICT and facilities files (new school or new ID)",deped-personnel-2023-24,False
-crla_not_published,137377,"SALUNGUIGUI ELEMENTARY SCHOOL: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,176501,"Morada-Ramos Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,176502,"Grand View Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,176504,"Teodora Moscoso Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,176505,"SAN RAFAEL ELEMENTARY SCHOOL SPED CENTER: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,305875,"Sta. Cruz National High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,305876,"San Isidro National High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
+crla_not_published,305875,Sta. Cruz National High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
+crla_not_published,305876,San Isidro National High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
 school_not_in_2023_24,306477,"SALUNGUIGUI NATIONAL HIGH SCHOOL (Public) is in DepEd's 2025-26 enrollment but not in the 2023-24 personnel, ICT and facilities files (new school or new ID)",deped-personnel-2023-24,False
-crla_not_published,306477,"SALUNGUIGUI NATIONAL HIGH SCHOOL: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
+crla_not_published,306477,SALUNGUIGUI NATIONAL HIGH SCHOOL: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
 barangay_alias,402915,"AMA Computer Learning Center of Naga, Inc.: DepEd's 'SAN FRANCISCO (POB.)' matched by hand to PSGC 'San Francisco' (0501724027)",deped-enrollment-2025-26,True
 school_not_in_2023_24,411119,"APEX LEARNING ACADEMY INCORPORATED (Private) is in DepEd's 2025-26 enrollment but not in the 2023-24 personnel, ICT and facilities files (new school or new ID)",deped-personnel-2023-24,False
 school_not_in_2023_24,411179,"SPJ International Technology Institute, Inc. (Private) is in DepEd's 2025-26 enrollment but not in the 2023-24 personnel, ICT and facilities files (new school or new ID)",deped-personnel-2023-24,False
-crla_not_published,114497,"Calauag Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114499,"Dr. Domingo G. Abcede Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114500,"Naga Central School I: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114501,"Naga Central School II: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114504,"Rosario V. Maramba Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,176503,"Naga City SPED Center: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,302264,"Camarines Sur National High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,302265,"Cararayan National High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,302266,"Carolina National High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-barangay_alias,302267,Concepcion PequeÃ±a National High School: DepEd's 'CONCEPCION PEQUEÑO' matched by hand to PSGC 'Concepcion Pequeña' (0501724010),deped-enrollment-2025-26,True
-crla_not_published,302267,"Concepcion PequeÃ±a National High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
+crla_not_published,176503,Naga City SPED Center: not in the EDCOM 2 dashboard's CRLA data (the school offers elementary grades but has no CRLA row),edcom2-crla,False
+crla_not_published,302264,Camarines Sur National High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
+crla_not_published,302265,Cararayan National High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
+crla_not_published,302266,Carolina National High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
+barangay_alias,302267,Concepcion Pequeña National High School: DepEd's 'CONCEPCION PEQUEÑO' matched by hand to PSGC 'Concepcion Pequeña' (0501724010),deped-enrollment-2025-26,True
+crla_not_published,302267,Concepcion Pequeña National High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
 barangay_alias,302268,Naga City Science High School: DepEd's 'CONCEPCION PEQUEÑO' matched by hand to PSGC 'Concepcion Pequeña' (0501724010),deped-enrollment-2025-26,True
-crla_not_published,302268,"Naga City Science High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,302269,"Naga City School of Arts and Trades: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,310301,"Tinago National High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,310302,"Leon Q. Mercado HS (Formerly CSNHS-Pacol Annex): no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
+crla_not_published,302268,Naga City Science High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
+crla_not_published,302269,Naga City School of Arts and Trades: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
+crla_not_published,310301,Tinago National High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
+crla_not_published,310302,Leon Q. Mercado HS (Formerly CSNHS-Pacol Annex): not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
 barangay_alias,403857,Blessed Lights Int'l Christian Academy (BLICA): DepEd's 'CONCEPCION PEQUEÑO' matched by hand to PSGC 'Concepcion Pequeña' (0501724010),deped-enrollment-2025-26,True
 barangay_alias,403874,"Naga Hope Christian School, Inc.: DepEd's 'CONCEPCION PEQUEÑO' matched by hand to PSGC 'Concepcion Pequeña' (0501724010)",deped-enrollment-2025-26,True
 barangay_alias,403885,The Mary Bree Village Montessori School: DepEd's 'CONCEPCION PEQUEÑO' matched by hand to PSGC 'Concepcion Pequeña' (0501724010),deped-enrollment-2025-26,True
@@ -41,25 +25,11 @@ barangay_alias,410281,"Archangel Saint Michael Academy, Inc.: DepEd's 'CONCEPCIO
 barangay_alias,411105,"NEW HORIZON INTEGRATED ACADEMY FOUNDATION, INC.: DepEd's 'CONCEPCION PEQUEÑO' matched by hand to PSGC 'Concepcion Pequeña' (0501724010)",deped-enrollment-2025-26,True
 school_not_in_2023_24,411105,"NEW HORIZON INTEGRATED ACADEMY FOUNDATION, INC. (Private) is in DepEd's 2025-26 enrollment but not in the 2023-24 personnel, ICT and facilities files (new school or new ID)",deped-personnel-2023-24,False
 barangay_alias,436518,CAMACOP Naga Learning Center: DepEd's 'CONCEPCION PEQUEÑO' matched by hand to PSGC 'Concepcion Pequeña' (0501724010),deped-enrollment-2025-26,True
-crla_not_published,114505,"Concepcion Grande ES: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114506,"Del Rosario Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
 barangay_alias,114508,Julian B. Meliton Elementary School: DepEd's 'CONCEPCION PEQUEÑO' matched by hand to PSGC 'Concepcion Pequeña' (0501724010),deped-enrollment-2025-26,True
-crla_not_published,114508,"Julian B. Meliton Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114509,"Mac Mariano Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114511,"Tinago Central School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114512,"Villa Corazon Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114513,"Villa Grande Homes Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,176506,"Balatas Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,305492,"Del Rosario High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,306079,"Balatas National High School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114514,"Jose Rizal Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114515,"Mabolo Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114516,"Sabang Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114517,"Sta.Cruz Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114518,"Tabuco Central School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
-crla_not_published,114519,"Triangulo Elementary School: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
+crla_not_published,305492,Del Rosario High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
+crla_not_published,306079,Balatas National High School: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
 school_not_in_2023_24,306352,"MABOLO NATIONAL HIGH SCHOOL (Public) is in DepEd's 2025-26 enrollment but not in the 2023-24 personnel, ICT and facilities files (new school or new ID)",deped-personnel-2023-24,False
-crla_not_published,306352,"MABOLO NATIONAL HIGH SCHOOL: no row in DepEd's machine-ready CRLA 2025-26 file (the file covers selected schools in CAR and Regions I, III, VIII and IX only)",deped-crla-2025-26,False
+crla_not_published,306352,MABOLO NATIONAL HIGH SCHOOL: not in the EDCOM 2 dashboard's CRLA data (CRLA tests Grades 1 to 3 and this school has no elementary grades),edcom2-crla,True
 budget_line_no_place,01a00ff3-7106-71c1-a77e-6c52142b1bd0,"AB2026 3000-2-02-37-001-000-000 General Administrative Services (₱1,391,730): no school ID or barangay code; city-wide only",naga-ab2026,False
 budget_line_no_place,01a00ff3-7145-715c-84e6-5881903b9ce2,"AB2026 3000-2-02-37-002-001-000 Repair/Maintenance and Upgrading of Science Exhibits and Equipment (₱400,000): no school ID or barangay code; city-wide only",naga-ab2026,False
 budget_line_no_place,01a00ff3-7176-7565-809b-5b3f29e2f0b3,"AB2026 3000-2-02-37-002-002-000 Repair of Inoperative Exhibits and Purchase/Fabrication and installation of Additional Interactive Science Exhibits (₱300,000): no school ID or barangay code; city-wide only",naga-ab2026,False
@@ -212,6 +182,5 @@ barangay_no_public_school,0501724014,Igualdad Interior: no public school listed 
 barangay_no_public_school,0501724017,Lerma: no public school listed in DepEd's 2025-26 enrollment (1 private),deped-enrollment-2025-26,True
 barangay_no_public_school,0501724018,Liboton: no public school listed in DepEd's 2025-26 enrollment (3 private),deped-enrollment-2025-26,True
 barangay_no_public_school,0501724027,San Francisco: no public school listed in DepEd's 2025-26 enrollment (1 private),deped-enrollment-2025-26,True
-eccd_indicator_not_published,stunting_0_59m_opt,"stunting_0_59m_opt: no public, machine-readable barangay figure for Naga's 27 barangays; the column is empty in barangays.csv",nnc-opt-plus,False
-eccd_indicator_not_published,child_development_centres,"child_development_centres: no public, machine-readable barangay figure for Naga's 27 barangays; the column is empty in barangays.csv",cbms,False
-eccd_indicator_not_published,crla_low_emerging_share,"crla_low_emerging_share: no public, machine-readable barangay figure for Naga's 27 barangays; the column is empty in barangays.csv",deped-crla-2025-26,False
+eccd_indicator_not_published,stunting_0_59m_opt,"Stunting by barangay: OPT+ 2025 is published for the City of Naga as a whole only, so the column is empty for all 27 barangays",edcom2-opt-2025,False
+eccd_indicator_not_published,child_development_centres,"Number of child development centres per barangay: EDCOM 2 publishes only which barangays have none, so barangays.csv carries a yes/no flag",edcom2-no-cdc,False

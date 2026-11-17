@@ -5,3 +5,4 @@ __pycache__/
 .env*
 # DepEd's national CSVs (~150 MB); data/raw/manifest.json keeps URL + sha256, pipeline.fetch re-downloads them
 data/raw/deped/
+data/raw/edcom2/extract.hyper

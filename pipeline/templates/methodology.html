@@ -33,8 +33,9 @@
           <tr><td>Schools, learners, classrooms, buildings</td><td><strong>Real.</strong> {{schools_all}} schools ({{schools_public}} public)</td><td>DepEd machine-ready files</td></tr>
           <tr><td>School staff paid from the City SEF, LGU-funded ICT</td><td><strong>Real.</strong> SY 2023-24, the latest DepEd publishes</td><td>DepEd personnel and ICT files</td></tr>
           <tr><td>Barangay codes and boundaries</td><td><strong>Real.</strong> {{barangays}} barangays</td><td>PSA's PSGC; faeldon's boundaries</td></tr>
-          <tr><td>Reading results (CRLA) per school</td><td><strong>Not published</strong> for any of Naga's {{schools_public}} public schools</td><td>DepEd's CRLA file covers other regions</td></tr>
-          <tr><td>Stunting (OPT+), child development centres (CBMS) per barangay</td><td><strong>Not published</strong> in a form I could download</td><td>see <a href="#eccd">ECCD indicators</a></td></tr>
+          <tr><td>Reading results (CRLA) per school</td><td><strong>Real.</strong> {{crla_public}} of {{public_es}} public elementary schools, end of SY 2025-26</td><td>EDCOM 2 dashboard (DepEd's CRLA)</td></tr>
+          <tr><td>Stunting (OPT+ 2025)</td><td><strong>Real</strong> for the city as a whole. <strong>Not published</strong> by barangay</td><td>EDCOM 2 dashboard (NNC's OPT+)</td></tr>
+          <tr><td>Child development centres</td><td><strong>Real</strong> as yes/no per barangay. <strong>Counts not published</strong></td><td>EDCOM 2 dashboard</td></tr>
           <tr><td>The SEF's own budget, line by line</td><td><strong>Not published</strong> on the portal</td><td>see <a href="#sef">The SEF</a></td></tr>
           <tr><td>Procurement (PPMP, PhilGEPS), MCP server</td><td><strong>Not built yet</strong>: fellowship work</td><td>see the <a href="proposal.html">proposal</a></td></tr>
         </tbody></table>
@@ -75,16 +76,18 @@
     <div id="outcomes">
       <dt>Reading results</dt>
       <dd>
-        <p>DepEd's machine-ready CRLA 2025-26 file has {{crla_rows}} schools, all from {{crla_regions}}. None is in Bicol, so <strong>{{crla_public}} of Naga's {{schools_public}} public schools</strong> have a reading result I can join. ELLNA and NAT are the same: selected schools elsewhere. The Paaralang Bukas dashboard shows more, but as an embedded report with no download I could find.</p>
-        <p>The Evidence for Education Coalition cites Naga's City School Board using Project Bukas data to realign the SEF towards remediation and furniture, after which the share of low emerging readers fell from 40% to 4%. That was Naga's own work, done by hand, and the school-level numbers behind it aren't in the public files yet.</p>
+        <p>DepEd's own machine-ready CRLA file has {{crla_rows}} schools, all from {{crla_regions}}, so it has none of Naga's (ELLNA and NAT are the same). The school-level results are in EDCOM 2's Early Childhood Dashboard instead, which is a public Tableau workbook whose author allows downloads. Its CRLA table is keyed by DepEd school ID and labelled "{{crla_note}}". {{crla_public}} of Naga's {{public_es}} public elementary schools are in it. The one that isn't is {{crla_missing_es}}, and the high schools don't take CRLA at all, since it covers Grades 1 to 3.</p>
+        <p>Across those schools, <strong>{{crla_low}} of {{crla_assessed}} learners ({{crla_low_share}})</strong> read at the Low Emerging level, and {{crla_struggling_share}} are struggling readers (Low or High Emerging, the dashboard's own measure). By district the share runs from {{crla_dist_min}} to {{crla_dist_max}}, and the highest single school is {{crla_school_max}}.</p>
+        <p>The Evidence for Education Coalition cites Naga's City School Board using Project Bukas data to realign the SEF towards remediation and furniture, after which the share of low emerging readers fell from 40% to 4%. That was Naga's own work, done by hand. The end-of-year figure here ({{crla_low_share}}) is in line with it, though I can't rebuild the 40% starting point from public data.</p>
       </dd>
     </div>
 
     <div id="eccd">
       <dt>ECCD indicators</dt>
       <dd>
-        <p>I looked for barangay-level stunting (Operation Timbang Plus), child development centres (CBMS) and CRLA for Naga. EDCOM 2's Early Childhood Dashboard has the right indicators, but its page sits behind a bot check, and I found no download or API (I didn't try to get past the check). I found no barangay-level OPT+ or CBMS file for Naga either.</p>
-        <p>So <code>barangays.csv</code> has the three columns, empty, each with a status of "not published", keyed by PSGC code. If EDCOM 2 or the City can share those tables, they drop straight in.</p>
+        <p>The same workbook has two early-childhood tables. Its 2025 Operation Timbang Plus report has one row for the City of Naga: {{opt_measured}} children under five measured (of an estimated {{opt_est}}), of whom <strong>{{opt_stsst}} ({{opt_share}}) were stunted or severely stunted</strong>. On the dashboard's own stunting measure, which EDCOM 2 describes as children aged 0 to 2, it's {{opt_e2_st}} of {{opt_e2_n}} ({{opt_e2_share}}). There's no barangay breakdown, so that column in <code>barangays.csv</code> stays empty with a status of "city level only".</p>
+        <p>For child development centres, the workbook has a list of barangays without one (it doesn't say where the list comes from). None of Naga's {{barangays}} barangays is on it. That gives a yes or no per barangay; how many centres each one has isn't published.</p>
+        <p>edcom2.gov.ph sits behind a bot check, which I cleared by hand once to see what the page embeds. The pipeline reads the workbook straight from public.tableau.com, where there's no check, and it stops if the author ever turns data access off. Only Naga's rows are kept.</p>
       </dd>
     </div>
 

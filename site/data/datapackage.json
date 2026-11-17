@@ -8,7 +8,7 @@
    "path": "https://opendatacommons.org/licenses/by/1-0/"
   }
  ],
- "created": "2026-11-17T08:31:01+00:00",
+ "created": "2026-11-17T14:30:50+00:00",
  "sources": [
   {
    "title": "Enrollment in SY 2025-2026 (school level)",
@@ -63,16 +63,20 @@
    "path": "https://github.com/faeldon/philippines-json-maps/releases/download/v1.1.1/geojson-medres.zip"
   },
   {
-   "title": "EDCOM 2 Early Childhood Dashboard",
-   "path": "https://edcom2.gov.ph/eccddashboard/"
+   "title": "CRLA per school, from the EDCOM 2 Early Childhood Dashboard (Source: DepEd - CRLA (End of School Year 2025-2026) as of May 10, 2026)",
+   "path": "https://public.tableau.com/views/EDCOM-dashboard_17847969310080/Overview"
+  },
+  {
+   "title": "2025 Operation Timbang Plus report, City of Naga row, from the EDCOM 2 Early Childhood Dashboard",
+   "path": "https://public.tableau.com/views/EDCOM-dashboard_17847969310080/Overview"
+  },
+  {
+   "title": "Barangays without a child development centre, from the EDCOM 2 Early Childhood Dashboard",
+   "path": "https://public.tableau.com/views/EDCOM-dashboard_17847969310080/Overview"
   },
   {
    "title": "Operation Timbang Plus (OPT+) results by barangay",
    "path": "https://www.nnc.gov.ph/"
-  },
-  {
-   "title": "Community-Based Monitoring System",
-   "path": "https://psa.gov.ph/"
   }
  ],
  "resources": [
@@ -298,53 +302,88 @@
      },
      {
       "name": "learners_2023_24",
-      "type": "number",
+      "type": "integer",
       "description": ""
      },
      {
       "name": "learners_2017_18",
-      "type": "number",
+      "type": "integer",
       "description": ""
      },
      {
       "name": "classrooms_instructional_2023_24",
-      "type": "number",
+      "type": "integer",
       "description": ""
      },
      {
       "name": "buildings_major_repair_or_worse_2023_24",
-      "type": "number",
+      "type": "integer",
       "description": ""
      },
      {
       "name": "makeshift_rooms_2023_24",
-      "type": "number",
+      "type": "integer",
       "description": ""
      },
      {
       "name": "staff_city_sef_2023_24",
-      "type": "number",
+      "type": "integer",
       "description": "School staff (teachers and non-teaching) paid from the City SEF, per DepEd's personnel file"
      },
      {
       "name": "teachers_city_sef_2023_24",
-      "type": "number",
+      "type": "integer",
       "description": "Teachers paid from the City SEF, per DepEd's personnel file"
      },
      {
       "name": "staff_other_lgu_2023_24",
-      "type": "number",
+      "type": "integer",
       "description": "School staff paid from other LGU funds, per DepEd's personnel file"
      },
      {
       "name": "ict_items_lgu_sef_2023_24",
-      "type": "number",
+      "type": "integer",
       "description": "ICT equipment items DepEd lists as funded by the LGU or its SEF"
      },
      {
       "name": "crla_2025_26",
       "type": "string",
-      "description": "'published' if the school has a row in DepEd's machine-ready CRLA file, else 'not published'"
+      "description": "'published' if the school has CRLA results in the EDCOM 2 dashboard's data, else 'not published'"
+     },
+     {
+      "name": "crla_assessed",
+      "type": "integer",
+      "description": "Learners in Grades 1-3 assessed, CRLA end of SY 2025-26 (EDCOM 2 dashboard, data from DepEd)"
+     },
+     {
+      "name": "crla_low_emerging",
+      "type": "integer",
+      "description": "Learners reading at the Low Emerging level, same source"
+     },
+     {
+      "name": "crla_high_emerging",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "crla_developing",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "crla_transitioning",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "crla_at_grade_level",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "in_deped_crla_file",
+      "type": "boolean",
+      "description": "Whether DepEd's own machine-ready CRLA file (selected schools) has this school"
      },
      {
       "name": "source_ids",
@@ -423,19 +462,34 @@
       "description": ""
      },
      {
-      "name": "stunting_0_59m_opt",
+      "name": "crla_schools",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "crla_assessed",
+      "type": "integer",
+      "description": "Learners in Grades 1-3 assessed, CRLA end of SY 2025-26 (EDCOM 2 dashboard, data from DepEd)"
+     },
+     {
+      "name": "crla_low_emerging",
+      "type": "integer",
+      "description": "Learners reading at the Low Emerging level, same source"
+     },
+     {
+      "name": "crla_low_emerging_share",
+      "type": "number",
+      "description": "crla_low_emerging / crla_assessed"
+     },
+     {
+      "name": "crla_status",
       "type": "string",
       "description": ""
      },
      {
-      "name": "stunting_status",
-      "type": "string",
-      "description": ""
-     },
-     {
-      "name": "child_development_centres",
-      "type": "string",
-      "description": ""
+      "name": "on_no_cdc_list",
+      "type": "boolean",
+      "description": "True if the barangay is on EDCOM 2's list of barangays without a child development centre; empty if not in its table"
      },
      {
       "name": "cdc_status",
@@ -443,12 +497,12 @@
       "description": ""
      },
      {
-      "name": "crla_low_emerging_share",
+      "name": "stunting_0_59m_opt",
       "type": "string",
       "description": ""
      },
      {
-      "name": "crla_status",
+      "name": "stunting_status",
       "type": "string",
       "description": ""
      }
@@ -518,6 +572,26 @@
       "name": "barangays",
       "type": "integer",
       "description": ""
+     },
+     {
+      "name": "crla_schools",
+      "type": "integer",
+      "description": ""
+     },
+     {
+      "name": "crla_assessed",
+      "type": "integer",
+      "description": "Learners in Grades 1-3 assessed, CRLA end of SY 2025-26 (EDCOM 2 dashboard, data from DepEd)"
+     },
+     {
+      "name": "crla_low_emerging",
+      "type": "integer",
+      "description": "Learners reading at the Low Emerging level, same source"
+     },
+     {
+      "name": "crla_low_emerging_share",
+      "type": "number",
+      "description": "crla_low_emerging / crla_assessed"
      }
     ]
    }

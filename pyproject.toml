@@ -5,4 +5,9 @@ requires-python = ">=3.12"
 dependencies = [
     "pandas>=3.1.1",
     "pyarrow>=26.0.1",
+    "tableauhyperapi",
 ]
+
+[tool.uv]
+# tableauhyperapi ships per-platform wheels; resolve for the machines this runs on (Mac dev, Linux CI)
+required-environments = ["sys_platform == 'darwin' and platform_machine == 'arm64'", "sys_platform == 'linux' and platform_machine == 'x86_64'"]

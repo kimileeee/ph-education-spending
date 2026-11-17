@@ -20,7 +20,7 @@ async function init() {
     [`${aip.lines_with_place_code + stats.budget.AB2026.lines_with_place_code}`, "budget rows that name a school or barangay"],
     [stats.schools.public, `public schools, ${stats.learners_public_2025_26.toLocaleString("en-PH")} learners (SY 2025-26)`],
     [stats.staff_city_sef_2023_24, "school staff DepEd lists as paid from the City SEF (SY 2023-24)"],
-    [`${stats.public_schools_with_crla}/${stats.schools.public}`, "public schools with CRLA results in DepEd's machine-ready files"],
+    [`${(stats.crla.low_emerging_share * 100).toFixed(1)}%`, `low emerging readers, ${stats.crla.assessed.toLocaleString("en-PH")} assessed at ${stats.public_schools_with_crla} public schools (CRLA, end of SY 2025-26)`],
   ].map(([v, k]) => `<div><div class="v">${v}</div><div class="k">${esc(k)}</div></div>`).join("");
 
   $("files").innerHTML = `<table><thead><tr><th class="l">Table</th><th class="l">What it holds</th><th>Rows</th><th>Fields</th><th class="l">Download</th></tr></thead><tbody>${

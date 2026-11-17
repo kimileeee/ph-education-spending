@@ -8,6 +8,9 @@ Sources (all public, no login):
   the 2027 AIP, and the public page of each education, early-childhood, nutrition and child-welfare row. These are
   the pages any resident's browser receives. The portal's bulk open-data API is switched off for both years by the
   City, so it is not used.
+- EDCOM 2's Early Childhood Dashboard is a public Tableau workbook on public.tableau.com whose author allows
+  downloads and data access. The workbook is read there (not through edcom2.gov.ph's bot check) and only Naga's
+  rows are kept: school CRLA, the city's OPT+ 2025 row, and the barangay-to-"no CDC" match.
 """
 
 import hashlib
@@ -51,6 +54,10 @@ CYCLES = {"AB2026": "/annual/2026/browse", "AIP2027": "/aip/2027/browse"}
 # Offices whose rows get their public page read (for fund sources and thematic tags). Everything else is read
 # from the Browse page alone. ponytail: office list, not all 854 pages; widen when the tagging rules need it.
 DETAIL_OFFICES = {"ESSO", "ECCDDO", "RSRL", "BSTC", "CCN", "CPNO", "CSWDO", "NCCAO"}
+
+
+EDCOM2_WB = "EDCOM-dashboard_17847969310080"
+EDCOM2_PAGE = "https://edcom2.gov.ph/eccddashboard/"
 
 
 def get(url: str, tries: int = 3) -> bytes:
@@ -153,6 +160,51 @@ def fetch_portal(manifest: dict) -> None:
         print(f"portal {cycle}: {len(items)} rows, {len(details)} detail pages")
 
 
+def fetch_edcom2(manifest: dict) -> None:
+    from tableauhyperapi import Connection, HyperProcess, Telemetry  # only this step needs it
+
+    meta = json.loads(get(f"https://public.tableau.com/profile/api/single_workbook/{EDCOM2_WB}?"))
+    if not meta.get("allowDataAccess"):
+        raise RuntimeError("EDCOM 2's workbook no longer allows data access; stop and ask EDCOM 2")
+    blob = get(f"https://public.tableau.com/workbooks/{EDCOM2_WB}.twb")
+    out = RAW / "edcom2"
+    out.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(io.BytesIO(blob)) as z:
+        twb = z.read(next(m for m in z.namelist() if m.endswith(".twb"))).decode()
+        hyper = out / "extract.hyper"  # gitignored; the Naga slice below is what build.py reads
+        hyper.write_bytes(z.read(next(m for m in z.namelist() if m.endswith(".hyper"))))
+    crla_note = re.search(r"Source: DepEd - CRLA[^<\n]*", twb)
+    # OPT+ columns come headerless (F7, F10, ...); the workbook's own captions name them
+    caps = {f: c for c, f in re.findall(r"<column caption='([^']*)'[^>]*name='\[(F\d+)\]'", twb)}
+    tables = {}
+    with HyperProcess(Telemetry.DO_NOT_SEND_USAGE_DATA_TO_TABLEAU) as hp, Connection(hp.endpoint, str(hyper)) as c:
+        for t in c.catalog.get_table_names("Extract"):
+            cols = [str(col.name).strip('"') for col in c.catalog.get_table_definition(t).columns]
+            tables[str(t.name).strip('"').split(".")[0].split(" - ")[0]] = [dict(zip(cols, r)) for r in c.execute_list_query(f"SELECT * FROM {t}")]
+    for need in ("school_crla_EOSY", "prov_stunting_2025", "matching_table_v3"):
+        if need not in tables:
+            raise RuntimeError(f"EDCOM 2 workbook no longer has {need}")
+    city = NAGA_PSGC.lstrip("0")
+    stunting = [r for r in tables["prov_stunting_2025"] if str(r.get("F1")) == city]
+    if len(stunting) != 1:
+        raise RuntimeError("expected one OPT+ 2025 row for the City of Naga")
+    doc = {
+        "workbook": f"https://public.tableau.com/views/{EDCOM2_WB}/Overview", "page": EDCOM2_PAGE,
+        "author": meta.get("authorName"), "allow_data_access": True,
+        "workbook_updated": datetime.fromtimestamp(meta["lastUpdateDate"] / 1000, timezone.utc).isoformat(timespec="seconds"),
+        "retrieved": now(),
+        "crla_source_note": crla_note.group(0).strip() if crla_note else "",
+        "crla": [r for r in tables["school_crla_EOSY"] if r.get("Division") == DIVISION],
+        "opt_2025_city": {caps.get(k, k): v for k, v in stunting[0].items()},
+        "barangays": [r for r in tables["matching_table_v3"] if str(r.get("psgc_code", "")).zfill(10).startswith(NAGA_PSGC[:7])],
+        "no_cdc_list_rows_total": len(tables.get("barangay_cdc", [])),
+    }
+    (out / "naga.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1, default=str))
+    manifest["edcom2/naga.json"] = {"url": f"https://public.tableau.com/workbooks/{EDCOM2_WB}.twb", "sha256": sha(blob),
+                                    "crla_schools": len(doc["crla"]), "barangays": len(doc["barangays"])}
+    print(f"edcom2: {len(doc['crla'])} CRLA schools, {len(doc['barangays'])} barangays, OPT+ city row")
+
+
 def now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
@@ -161,7 +213,7 @@ def main() -> None:
     RAW.mkdir(parents=True, exist_ok=True)
     mpath = RAW / "manifest.json"
     manifest = json.loads(mpath.read_text()) if mpath.exists() else {}
-    steps = {"deped": fetch_deped, "psgc": fetch_psgc, "geo": fetch_geo, "portal": fetch_portal}
+    steps = {"deped": fetch_deped, "psgc": fetch_psgc, "geo": fetch_geo, "portal": fetch_portal, "edcom2": fetch_edcom2}
     for name in sys.argv[1:] or steps:
         steps[name](manifest)
     manifest["_retrieved"] = now()

@@ -19,8 +19,9 @@ Static site plus Python pipelines, same pattern as [ph-energy-data](https://gith
 | City budget rows, AB 2026 (enacted) and AIP 2027 | Real: public pages of budget.naga.gov.ph |
 | Schools, enrollment, classrooms, buildings, City-SEF-paid staff, LGU/SEF ICT | Real: DepEd machine-ready files (Project Bukas) |
 | PSGC barangays and boundaries | Real: PSA PSGC 2026; faeldon/philippines-json-maps |
-| CRLA per school | Not published for Naga (DepEd's file covers CAR, Regions I, III, VIII, IX) |
-| OPT+ stunting, CDCs (CBMS) per barangay | Not published in a downloadable form; columns empty with status "not published" |
+| CRLA per school (end of SY 2025-26) | Real: EDCOM 2 Early Childhood Dashboard's public Tableau workbook (data from DepEd); 30 of 31 public elementary schools. DepEd's own machine-ready CRLA file has no Naga school |
+| OPT+ 2025 stunting | Real for the city as a whole (same workbook); not published by barangay, so that column stays empty |
+| Child development centres | Real as yes/no per barangay (EDCOM 2's list of barangays without a CDC; none of Naga's is on it); counts not published |
 | SEF budget line by line | Not on the portal |
 | Procurement (PPMP, PhilGEPS), MCP server | Not built; fellowship work |
 
@@ -28,7 +29,7 @@ Static site plus Python pipelines, same pattern as [ph-energy-data](https://gith
 
 ```bash
 uv sync
-uv run python -m pipeline.fetch            # all sources (DepEd ~150 MB); or: fetch deped | psgc | geo | portal
+uv run python -m pipeline.fetch            # all sources (DepEd ~150 MB); or: fetch deped | psgc | geo | portal | edcom2
 uv run python -m pipeline.build            # data/*.csv|parquet, site/api, site/data, site/openapi.json
 uv run python -m pipeline.site             # methodology + proposal pages, cache-busting stamps
 uv run python -m pipeline.test_pipeline

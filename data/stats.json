@@ -1,5 +1,5 @@
 {
- "built_at": "2026-11-17T08:31:01+00:00",
+ "built_at": "2026-11-17T14:30:50+00:00",
  "city": {
   "name": "City of Naga, Camarines Sur",
   "psgc_code": "0501724000",
@@ -22,7 +22,32 @@
  "staff_other_lgu_2023_24": 23,
  "ict_items_lgu_sef_2023_24": 306,
  "schools_with_lgu_sef_ict": 37,
- "public_schools_with_crla": 0,
+ "public_schools_with_crla": 30,
+ "public_elementary_schools": 31,
+ "public_schools_in_deped_crla_file": 0,
+ "crla": {
+  "period": "End of SY 2025-26, as of 10 May 2026",
+  "assessed": 9616,
+  "low_emerging": 445,
+  "high_emerging": 283,
+  "at_grade_level": 4868,
+  "low_emerging_share": 0.0463,
+  "struggling_share": 0.0757,
+  "school_low_emerging_share_max": 0.1139
+ },
+ "opt_2025_city": {
+  "children_estimated": 21325,
+  "children_measured": 17736,
+  "coverage": 0.832,
+  "stunted": 228,
+  "severely_stunted": 100,
+  "stunted_or_severely": 328,
+  "stunted_or_severely_share": 0.018,
+  "edcom2_measure_stunted": 79,
+  "edcom2_measure_children": 6535
+ },
+ "barangays_on_no_cdc_list": 0,
+ "barangays_in_edcom2": 27,
  "barangays": 27,
  "barangays_with_public_school": 19,
  "schools_matched_to_psgc": 98,
@@ -84,13 +109,13 @@
   "barangay_alias": 10,
   "barangay_no_public_school": 8,
   "budget_line_no_place": 143,
-  "crla_not_published": 45,
-  "eccd_indicator_not_published": 3,
+  "crla_not_published": 15,
+  "eccd_indicator_not_published": 2,
   "school_not_in_2023_24": 6,
   "sef_budget_not_published": 1
  },
- "checks": 4,
- "checks_matching": 4,
+ "checks": 7,
+ "checks_matching": 7,
  "domains": {
   "basic_education": {
    "label": "Basic education",
