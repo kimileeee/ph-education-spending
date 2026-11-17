@@ -4,7 +4,7 @@ Numbers as of 17 Nov 2026, from `data/stats.json`. Rerun the pipeline and they m
 
 ## The City's budget (budget.naga.gov.ph, public pages)
 
-- **2027 AIP (proposed):** 424 rows, ₱8,698,439,574 on the Browse page. Education and early childhood (basic education, ECCD, child nutrition, child welfare, library): **₱278.7 million in 24 rows**.
+- **2027 AIP (proposed):** 424 rows, ₱8,698,439,574 on the Browse page. Each row is a published programme; the portal's AIP overview says the same (424 programmes, ₱8.70B, 57 of 63 offices published, 17 Nov 2026). The application's 332 programmes / ₱8.13B is an earlier snapshot: 63 programmes were last updated on 6 Nov, and the figure keeps moving until all offices publish. Education and early childhood (basic education, ECCD, child nutrition, child welfare, library): **₱278.7 million in 24 rows**.
 - **The SEF in the 2027 AIP is one row:** "Management of the Special Education Fund and Secretariat Support to the Naga City School Board", 3000-2-03-38-002-001-000, **₱130,000,000**, all MOOE, fund SEF. That's **47%** of the education and early-childhood total, and it names no school. https://budget.naga.gov.ph/budget/01a13564-6353-7486-bdec-a67a8a8f798a
 - Other 2027 rows: scholarships ₱44.15M, QUEEN ₱27.52M (GF + LDF), ECCD office ₱45.38M across 6 rows (₱29.01M of it institutional and administrative support).
 - **2026 enacted budget:** 430 rows, ₱1,664,699,680 on Browse (the overview's ₱2.12B adds ₱457.66M of special purpose appropriations). The same offices: ₱30.4 million in 23 rows. The enacted rows carry no fund field and **the SEF's own 2026 budget isn't on the portal**.
