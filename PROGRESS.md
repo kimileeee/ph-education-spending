@@ -8,6 +8,7 @@ Built 17 Nov 2026 (one afternoon) as the optional prototype for the BetterGov Fe
 | 2. Pipelines | Done | fetch, build (tagging rules, PSGC matching, checks, gaps), openapi, site. |
 | 3. Pages | Done, local | Explorer, Source checks, Methodology, Data & API, Proposal. Verified desktop/phone, light/dark. |
 | 4. EDCOM 2 dashboard data | Done, local | Kim cleared the bot check once; the dashboard embeds a public Tableau workbook (author allows downloads). Pipeline reads it from public.tableau.com: school CRLA (end of SY 2025-26), the city's OPT+ 2025 row, the no-CDC barangay list. |
+| 5. Zamboanga City and Cagayan de Oro | Done, local | Pipeline runs over `CITIES`; explorer has a city switcher. Budgets: FY 2026 ordinances machine-read by Stride's lgu-intel parsers. Zamboanga: 44 sheets name a national high school, 42 matched to DepEd IDs. CDO: 30 of 80 barangays on EDCOM 2's no-CDC list. Links to the LGU budget comparison. |
 | Deploy | Waiting for Kim | Public repo + Vercel project, as with ph-energy-data. |
 
 ## Deviations from the brief, and why

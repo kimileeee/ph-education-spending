@@ -18,6 +18,14 @@ Numbers as of 17 Nov 2026, from `data/stats.json`. Rerun the pipeline and they m
 - **Reading results (CRLA, end of SY 2025-26, as of 10 May 2026, via the EDCOM 2 dashboard's public workbook):** 30 of Naga's 31 public elementary schools (the SPED Center is the one without). **445 of 9,616 learners (4.6%) read at the Low Emerging level**; 7.6% are struggling readers (Low + High Emerging). By district: North 2.0%, East 5.1%, West 5.5%, South 6.4%. Highest school: Jose Rizal ES, 11.4% (18 of 158). DepEd's own machine-ready CRLA file has no Naga school (it covers CAR and Regions I, III, VIII, IX).
 - Naga North has 26,946 of the 47,176 learners and 86 buildings needing major repair or worse (of 182 citywide).
 
+## Zamboanga City and Cagayan de Oro (added 17 Nov; budgets machine-read from the 2026 ordinance PDFs, unreviewed)
+
+- **Zamboanga City:** 222 public schools in 12 districts, 234,814 learners. 2026 ordinance: ₱594.9M for education and early childhood in 59 rows. **44 sheets name a single national high school (₱11.6M, supplies/utilities/travel); 42 are matched to a DepEd school ID**, so its money can be followed to a school. Also ₱148.2M allowances for public school heads and teachers, ₱100M school supplies allowance, ₱127.1M school buildings, ₱21M honoraria for barangay child development workers. CRLA: 174 of 174 public elementary schools, **12.6% low emerging** (7.7% Tetuan to 17.8% Labuan by district). OPT+ 2025: 1.9%. 3 of 98 barangays without a CDC. 40 school staff paid from the City SEF.
+- **Cagayan de Oro:** 115 public schools in 10 districts, 138,334 learners. 2026 ordinance (sheets tie exactly to the ₱8.95B GRAND TOTAL): ₱393.0M in 24 rows, incl. ₱35.2M City Education Development Office, ₱350M scholarship grants, ₱1.0M day care/ECCD lines. No row names a school. CRLA: 73 of 73, **8.5% low emerging**. **30 of 80 barangays are on EDCOM 2's no-CDC list.** OPT+ 2025 row says 0.3% stunted (192 of 68,903), suspiciously low: ask NNC.
+- Neither ordinance carries the SEF (General Fund books).
+- Whole budgets, side by side: https://peoples-budget.stridetech.workers.dev/lgus/explore (LGU budget comparison).
+- One-liner: *The same pipeline runs on Zamboanga City and Cagayan de Oro from their ordinance PDFs: in Zamboanga, 42 budget rows already name a specific high school and join to its DepEd ID; in Cagayan de Oro, 30 of 80 barangays have no child development centre.*
+
 ## ECCD (EDCOM 2 Early Childhood Dashboard, public Tableau workbook, author allows downloads)
 
 - **OPT+ 2025, City of Naga (city level only):** 17,736 children under five measured (83.2% of an estimated 21,325); **328 (1.8%) stunted or severely stunted** (228 stunted, 100 severely). On the dashboard's own measure (described by EDCOM 2 as ages 0 to 2): 79 of 6,535 (1.2%). Not published by barangay.
